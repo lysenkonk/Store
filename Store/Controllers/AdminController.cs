@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Store.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Store.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IProductRepository repository;
