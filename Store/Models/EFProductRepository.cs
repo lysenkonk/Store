@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace Store.Models
 {
     public class EFProductRepository : IProductRepository
     {
         private ApplicationDbContext context;
-        public EFProductRepository(ApplicationDbContext ctx)
+        //IHostingEnvironment _appEnviroment;
+
+        public EFProductRepository(ApplicationDbContext ctx /*IHostingEnvironment appEnvironment*/)
         {
             context = ctx;
+            //_appEnviroment = appEnvironment;
         }
-        public IQueryable<Product> Products => context.Products;
+        public IQueryable<Product> Products => context.Products.Include(p => p.Image);
 
-        public void SaveProduct(Product product)
+        //public IQueryable<Product> Products()
+        //{
+        //    context.Products.I
+        //}
+
+        public void SaveProduct(Product product, FileModel image)
         {
             if(product.ProductID == 0)
             {
@@ -29,10 +39,10 @@ namespace Store.Models
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Category = product.Category;
+                    dbEntry.Image = image;
                 }
             }
             context.SaveChanges();
-
         }
 
         public Product DeleteProduct(int productID)

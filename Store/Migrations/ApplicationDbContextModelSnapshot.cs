@@ -40,6 +40,20 @@ namespace Store.Migrations
                     b.ToTable("CartLine");
                 });
 
+            modelBuilder.Entity("Store.Models.FileModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FileModel");
+                });
+
             modelBuilder.Entity("Store.Models.Order", b =>
                 {
                     b.Property<int>("OrderID")
@@ -63,6 +77,8 @@ namespace Store.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<bool>("Shipped");
+
                     b.Property<string>("State")
                         .IsRequired();
 
@@ -84,12 +100,16 @@ namespace Store.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<int?>("ImageId");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<decimal>("Price");
 
                     b.HasKey("ProductID");
+
+                    b.HasIndex("ImageId");
 
                     b.ToTable("Products");
                 });
@@ -103,6 +123,13 @@ namespace Store.Migrations
                     b.HasOne("Store.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductID");
+                });
+
+            modelBuilder.Entity("Store.Models.Product", b =>
+                {
+                    b.HasOne("Store.Models.FileModel", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId");
                 });
 #pragma warning restore 612, 618
         }
