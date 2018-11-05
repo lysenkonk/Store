@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/lib/style.min.css" />
+   
     <link rel="stylesheet"
           asp-href-include="/lib/bootstrap/dist/**/*.min.css"
           asp-href-exclude="**/*-reboot*,**/*-grid*" />
@@ -10,19 +11,187 @@
     <title>Store</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse bg-inverse" role="navigation">
-        <a class="col navbar-brand" href="#">STORE</a>
-        <div class="float-right">
-             @await Component.InvokeAsync("CartSummary")
+    @*<div class="navbar navbar-inverse bg-inverse" role="navigation">
+            <a class="col navbar-brand" href="#">STORE</a>
+            <div class="float-right">
+                 @await Component.InvokeAsync("CartSummary")
+            </div>
+        </div>
+        <div id="main">
+            <div class="sidebar">
+                <div class="sidenav">
+                    <div class="title">Menu</div>
+                    <ul>
+                        @await Component.InvokeAsync("NavigationMenu")
+                    </ul>
+                </div>
+            </div>
+            <div class="set-proposals">
+                @RenderBody()
+            </div>
+        </div>*@
+
+    <div id="wrapper">
+        <div class="text-block"></div>
+        <div id="headeri">
+            <div class="container">
+                <div class="logo-box">
+                    <div class="logo">
+                        <a href="" onclick="jQuery.cookie('langbtnpushed', 1, {domain: '.flowers.ua'});">
+                        </a>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="status-box">
+                        <div class="row activepopup">                     
+                                @await Component.InvokeAsync("CartSummary")
+                        </div>
+                    </div>
+                    <div class="tel-box">
+                        <div class="title">Contacts</div>
+                        <div class="tel-wrap">
+                            <div class="tel">
+                                <strong> (066) 585-88-99 </strong>
+                                <span> Kharkiv</span>
+                            </div>
+                        </div>
+                        <div class="time">We work around the clock</div>
+                    </div>
+                </div>
+            </div>
+            <ul id="nav" style="min-width:900px;">
+                <li>
+                    <a href="" title="About the shop" rel="nofollow">
+                        <span>About the shop</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Delivery and payment" rel="nofollow">
+                        <span>Delivery and payment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" title="Quality guarantee">
+                        <span>Quality guarantee</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="" rel="nofollow">
+                        <span>Guestbook</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>Photogallery</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span>Feedback</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="main">
+            <div class="btn-up" onclick="$('html, body').animate({ scrollTop: 0 }, 'slow');"></div>
+            <div class="sidebar">
+                <div class="sidenav">
+                    <div class="title">Catalog</div>
+                    <ul>
+                        @await Component.InvokeAsync("NavigationMenu")
+                    </ul>
+                </div>
+            </div>
+            <div class="set-proposals">
+                <div class="head">
+                    <div class="holder">
+                        <h3 style="color:#F00; font-weight:bold;">Акционные букеты</h3>
+                        <a href="">Посмотреть все</a>
+                    </div>
+                    <div class="sorting">
+                        <strong>Сортировать:</strong>
+                        <ul>
+                            <li><a href=""><span><em>низкая цена</em></span></a></li>
+                            <li><a href=""><span><em>высокая цена</em></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                @RenderBody()
+
+            </div>
+
+        </div>
+        <div id="footer" style="margin-top: 1343px;">
+
+            @*<ul class="menu">
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/page_12" rel="nofollow">Полезная информация</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/terms_of_use" rel="nofollow"></a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/refund_privacy_policy" rel="nofollow">Политика конфиденциальности и возвратов</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/guestbook" rel="nofollow">Отзывы</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/photogallery" rel="nofollow">Фотогалерея</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/feedback" rel="nofollow">Обратная связь</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li>
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            document.writeln('<a href="https://flowers.ua/ru/collaborators" rel="nofollow">Сотрудничество</a>');
+                            //]]>
+
+                        </script><span>|</span>
+                    </li>
+                    <li><a href="#" onclick="return showOrderStatusWin();" rel="nofollow">Статус Вашего заказа</a><span>|</span></li>
+                    <li><a href="https://flowers.ua/ru/articles">Блог</a></li>
+                </ul>
+                <div style="margin:10px 0 20px 0;">
+                <a href="https://m.flowers.ua?viewmod=mob" style="color:#fff;" onclick="_gaq.push(['_link', this.href]);">мобильная версия</a>
+                </div>
+                <div class="copyright">
+                    2003&#150;2018 &copy; <a href="https://plus.google.com/110498226477261647932?rel=author" style="color:#fff;">Flowers.ua</a> Доставка цветов по Украине
+                </div>*@
         </div>
     </div>
-    <div class="row m-1 p-1">
-        <div id="categories" class="col-3">
-            @await Component.InvokeAsync("NavigationMenu")
-        </div>
-        <div class="col-9">
-            @RenderBody()
-        </div>
-    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>
