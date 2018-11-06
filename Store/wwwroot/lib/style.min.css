@@ -252,6 +252,7 @@ p {
 
 .container {
     width: 100%;
+    margin-right: 0px;
 }
 
     .container:after {
@@ -283,7 +284,7 @@ p {
 
 .status-box {
     float: right;
-    width: 161px;
+    width: 40px;
     margin: 10px 0 0 10px;
 }
 
@@ -402,15 +403,17 @@ p {
 
 .tel-box .title {
     color: #fff;
-    padding: 5px 0 10px 7px;
+    text-align: center;
+    padding: 5px 5px 10px 7px;
     font: 17px "trebuchet ms", helvetica, sans-serif;
 }
 
 .tel-box .tel-wrap {
+    text-align: center;
     color: #324315;
-    font: 11px/14px tahoma, geneva, sans-serif;
-    margin: 0 0 -1px;
-    width: 210px;
+    font: 14px/18px tahoma, geneva, sans-serif;
+    margin: 5px 5px -1px;
+    width: 200px;
     height: 90px;
 }
 
@@ -441,7 +444,8 @@ p {
     padding: 16px 0 0 236px;
     list-style: none;
     overflow: hidden;
-    height: 26px;
+    min-width: 900px;
+    /*height: 32px;*/
 }
 
     #nav li {
@@ -470,7 +474,9 @@ p {
             #nav li a span {
                 float: left;
                 height: 22px;
-                padding: 4px 6px 0;
+                padding: 0px;
+                margin: 5px 20px;
+                font-size: 14px;
             }
 
             #nav li.active a span,
@@ -2135,6 +2141,7 @@ select {
     background: url(../Files/design/bg-footer.png) repeat-x;
     text-align: center;
     padding: 19px 0 0;
+    /*margin-top: 1343px;*/
 }
 
     #footer .menu {
@@ -2267,7 +2274,9 @@ select {
             height: 1%;
             margin: 8px 0 5px;
         }
-
+        .set-proposals .head .holder {
+            margin-top: 10px;
+        }
         .set-proposals .head .sorting {
             overflow: hidden;
             height: 1%;
@@ -2278,6 +2287,12 @@ select {
             margin: 0 18px 0 0;
             display: inline;
             font: 24px "trebuchet ms", helvetica, sans-serif;
+
+        }
+
+        .set-proposals .head .bright_header{
+            color: #F00;
+            font-weight: bold;
         }
 
         .set-proposals .head .sorting strong {

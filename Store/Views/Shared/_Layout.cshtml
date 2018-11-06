@@ -42,24 +42,27 @@
                     </div>
                 </div>
                 <div class="box">
-                    <div class="status-box">
-                        <div class="row activepopup">                     
-                                @await Component.InvokeAsync("CartSummary")
-                        </div>
-                    </div>
                     <div class="tel-box">
                         <div class="title">Contacts</div>
                         <div class="tel-wrap">
-                            <div class="tel">
+                            @*<div class="tel">*@
                                 <strong> (066) 585-88-99 </strong>
                                 <span> Kharkiv</span>
-                            </div>
+                            @*</div>*@
                         </div>
                         <div class="time">We work around the clock</div>
                     </div>
+                    <div class="status-box">
+
+                        <div class="row activepopup">
+                            @await Component.InvokeAsync("CartSummary")
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-            <ul id="nav" style="min-width:900px;">
+            <ul id="nav">
                 <li>
                     <a href="" title="About the shop" rel="nofollow">
                         <span>About the shop</span>
@@ -106,7 +109,7 @@
             <div class="set-proposals">
                 <div class="head">
                     <div class="holder">
-                        <h3 style="color:#F00; font-weight:bold;">Акционные букеты</h3>
+                        <h3 class="bright_header">Акционные букеты</h3>
                         <a href="">Посмотреть все</a>
                     </div>
                     <div class="sorting">
@@ -122,7 +125,7 @@
             </div>
 
         </div>
-        <div id="footer" style="margin-top: 1343px;">
+        <div id="footer">
 
             @*<ul class="menu">
                     <li>
