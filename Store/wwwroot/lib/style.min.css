@@ -481,7 +481,7 @@ p {
 
             #nav li.active a span,
             #nav li a:hover span {
-                background: url(../Files/design/nav-r.gif) no-repeat 100% 0;
+                /*background: url(../Files/design/nav-r.gif) no-repeat 100% 0;*/
             }
 
 #main {

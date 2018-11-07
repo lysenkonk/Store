@@ -18,6 +18,18 @@ namespace Store.Controllers
             repository = repo;
         }
 
+        public ViewResult Product(int productId)
+        {
+            Product product = repository.Products
+                .FirstOrDefault(p => p.ProductID == productId);
+
+            if (product == null)
+            {
+                return View("Product not found");
+            }
+            return View(product);
+        }
+
         public ViewResult List(string category, int productPage = 1)
             => View(new ProductsListViewModel
             {
