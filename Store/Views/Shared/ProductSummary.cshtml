@@ -8,36 +8,37 @@
             <div class="visual">
                 @if (Model.Image != null)
                 {
-                    <a href=Model.Image.Path>
+                    <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
                         <img src="@Url.Content(Model.Image.Path)" width="195" height="195" />
                     </a>
                 }
             </div>
-            
+
             <div class="name"><a href="">@Model.Name</a></div>
             <div class="price">
-                <div class="bg">&nbsp;</div> 
-                    <table style="text-align:center; width:167px;">
-                        <tr>
-                            <td>
-                                <div>@Model.Price.ToString("c") &nbsp;грн</div>
-                            </td>
-                            <td>
-                                <div style="float:right;height:27px;width:85px;">
-                                    <form id="@Model.ProductID" asp-action="AddToCart"
-                                          asp-controller="Cart" method="post">
-                                        <input type="hidden" asp-for="ProductID" />
-                                        <input type="hidden" name="returnUrl"
-                                               value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                            <button type="submit"
-                                                    class="btn btn-success btn-sm pull-right" style="float:right">
-                                                Add to Cart
-                                            </button>
-                                    </form>
-                                </div>
-                            </td>
-                         </tr>
-                    </table>
+                <div class="bg">&nbsp;</div>
+                <table style="text-align:center; width:167px;">
+                    <tr>
+                        <td>
+                            <div>@Model.Price.ToString("c") &nbsp;грн</div>
+                            <br />
+                        </td>
+                        <td>
+                            <div style="float:right;height:27px;width:85px;">
+                                <form id="@Model.ProductID" asp-action="AddToCart"
+                                      asp-controller="Cart" method="post">
+                                    <input type="hidden" asp-for="ProductID" />
+                                    <input type="hidden" name="returnUrl"
+                                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                    <button type="submit"
+                                            class="btn btn-success btn-sm pull-right" style="float:right">
+                                        Add to Cart
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
      </div>
