@@ -204,7 +204,7 @@ p {
 #headeri {
     padding: 0 24px;
     height: 251px;
-    background: url(../Files/design/bg-wrapper.jpg) no-repeat;
+    /*background: url() no-repeat;*/
 }
 
     #headeri:after {
@@ -2418,7 +2418,7 @@ select {
 
         .set-proposals .list .box {
             background: url(../Files/design/line01.gif) repeat-x 0 100%;
-            height: 298px;
+            height: 295px;
             overflow: hidden;
             min-width: 200px;
             text-align: center;
@@ -2442,7 +2442,7 @@ select {
                 top: 4px;
                 left: 50%;
                 margin: 0 0 0 -60px;
-                padding: 0 0 1px 0;
+                padding: 0 0 10px 0;
                 display: none;
                 border: 0;
                 cursor: pointer;
@@ -2616,7 +2616,7 @@ select {
         color: #9a3;
         font-weight: bold;
         font-size: 15px;
-        margin: 5px 2px 0 0;
+        margin: 5px 2px 0px 50px;
         width: 50px;
     }
 
@@ -2629,7 +2629,12 @@ select {
             margin: 0;
             width: 50px;
         }
-
+        .btnCart {
+            float: right;
+            height: 27px;
+            width: 85px;
+            padding-bottom: 60px;
+        }
 div.old {
     display: block;
     color: #d55429;
@@ -4405,7 +4410,7 @@ div.old {
             padding-right: 10px;
         }
 
-    .status-block .box {
+    .status-block  {
         margin: 0 0 23px;
     }
 

@@ -44,8 +44,8 @@ namespace Store
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
                 app.UseStaticFiles();
@@ -80,9 +80,9 @@ namespace Store
                         name: null,
                         template: "{controller}/{action}/{id?}");
                 });
-            }
+            //}
             SeedData.EnsurePopulated(app);
-            IdentitySeedData.EnsurePopulated(app);
+            IdentitySeedData.EnsurePopulated(app).Wait();
         }
     }
 }
