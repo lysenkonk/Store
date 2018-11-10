@@ -19,6 +19,7 @@ namespace SportsStore.Models
                 new Product
                 {
                     Name = "Kayak",
+                    Image = new FileModel() { Name = "3", Path = "/Files/3.bmp" },
                     Description = "A boat for one person",
                     Category = "Watersports",
                     Price = 275
@@ -26,6 +27,7 @@ namespace SportsStore.Models
                 new Product
                 {
                     Name = "Lifejacket",
+                    Image = new FileModel() { Name = "5", Path = "/Files/5.jpg" },
                     Description = "Protective and fashionable",
                     Category = "Watersports",
                     Price = 48.95m

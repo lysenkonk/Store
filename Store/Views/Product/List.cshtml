@@ -1,18 +1,32 @@
 ﻿@model ProductsListViewModel
 
-<ul class="list">
+    <div class="set-proposals">
+        <div class="head">
+            <div class="holder">
+                <h3 class="bright_header"></h3>
+                <a href=""></a>
+            </div>
+            <div class="sorting">
+                <strong></strong>
+                <ul>
+                    <li><a href=""><span><em></em></span></a></li>
+                    <li><a href=""><span><em></em></span></a></li>
+                </ul>
+            </div>
+        </div>
 
-    @foreach (var p in Model.Products)
-    {
-        @Html.Partial("ProductSummary", p)
-    }
+        <ul class="list">
+            @foreach (var p in Model.Products)
+            {
+                @Html.Partial("ProductSummary", p)
+            }
+        </ul>
 
-
-</ul>
-<div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
-     page-class="btn" page-class-normal="btn-secondary"
-     page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
-     class="pagination justify-content-center">
-</div>
+        <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+             class="pagination justify-content-center">
+        </div>
+    </div>
 
 

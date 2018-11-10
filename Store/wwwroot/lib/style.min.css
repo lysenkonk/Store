@@ -213,6 +213,11 @@ p {
         content: "";
     }
 
+.box .visual img {
+    width: 195px;
+    height: 195px;
+}
+
 .logo {
     margin: 0;
     width: 268px;
@@ -2347,7 +2352,7 @@ select {
         }
 
     .set-proposals .list {
-        margin: 0;
+        margin-right: 20px;
         padding: 3px 0 0;
         list-style: none;
         overflow: hidden;

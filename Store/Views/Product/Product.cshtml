@@ -2,10 +2,10 @@
 @{
     ViewData["Title"] = "@model";
 }
-<div class="content">
-    <div class="item-box">
-        <div class="info">
-            <div class="breadcrumbs">
+
+ <div class="item-box">
+     <div class="info">
+         <div class="breadcrumbs">
                 @*<ul>
                 <li itemtype="http://data-vocabulary.org/Breadcrumb" itemscope="">
                     <a itemprop="url" href="https://flowers.ua/ru/kiev"><span itemprop="title">Доставка цветов в Киев</span></a>
@@ -23,107 +23,66 @@
 
             </ul>*@
             </div>
-            <h1 itemprop="name">@Model.Name</h1>
-            <form action="#" class="sorting-form">
-                <fieldset>
-                    <div class="row">
-                        <div class="col">
-                            @*<label>Показывать цены в </label>
-                                                <select class="select01" onchange="
-                        f = document.createElement('form');
-                        i = document.createElement('input');
-                        i.setAttribute('type','hidden');
-                        i.setAttribute('name','icurrency');
-                        i.setAttribute('value',this.options[this.selectedIndex].value);
-                        f.appendChild(i);
-                        document.body.appendChild(f);
-                        f.method = 'POST';
-                        f.action = document.location;
-                        f.submit();
-                        return false;">
-                                                    <option value="uah" selected="selected">UAH</option>
-                                                    <option value="usd">USD</option>
-                                                    <option value="rub">RUB</option>
-                                                    <option value="eur">EUR</option>
-                                                </select>*@
-                        </div>
-                        <div>
-                            <div class="choice-delivery" style="height:30px; float:none;">
-                                @*<em>Доставка в</em>
-                            <a class="opener" href="#" onclick="return searchRegion(this);"><span>Киев</span></a>
-                            <span class="reg-bkt">(</span>
-                            <a class="opener link" href="#" onclick="return searchRegion(this);"><span>изменить регион</span></a>
-                            <span class="reg-bkt">)</span>*@
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
-
-            <div class="container2">
+         <h1 itemprop="name">@Model.Name</h1>
+         <div class="container2">
                 <div class="visual-block">
                     <div class="visual image large">
                         <div class="bg-line">&nbsp;</div>
-                        <img style="width:100%;" id="productImage" itemprop="image" src="@Url.Content(Model.Image.Path)" alt=@Model.Name title=@Model.Name />
+                        @Html.Partial("Image.cshtml", @Model)
                     </div>
                     <div class="extimgs">
-                        @*<ul class="list">
-                        <li id="img_">
-                            <img src="" alt="" title="" />
-                        </li>
-                        <li id="img_0">
-                            <img src="" alt="" title="" />
-                        </li>
-                        <li id="img_1">
-                            <img src="" alt="" title="" />
-                        </li>
-                    </ul>*@
+                        <ul class="list">
+                            <li id="img_">
+                                <img src="" alt="" title="" />
+                            </li>
+                            <li id="img_0">
+                                <img src="" alt="" title="" />
+                            </li>
+                            <li id="img_1">
+                                <img src="" alt="" title="" />
+                            </li>
+                        </ul>
                     </div>
+                    <div id="___plusone_0"></div>
                 </div>
                 <div class="holder">
                     <form class="order-form" id="@Model.ProductID" asp-action="AddToCart"
                           asp-controller="Cart" method="post">
                         <fieldset>
-                            <input type="hidden" name="id" value="@Model.ProductID" />
-                            @*<input type="hidden" name="priceSchedulerId" id="holiday" value="0" />
-                        <input type="hidden" name="item_variant" id="variant" value="0" />
-                        <input type="hidden" id="tab" name="tab" value="1" />*@
+                            <input type="hidden" asp-for="ProductID" />
+                            <input type="hidden" name="returnUrl"
+                                   value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                            <input type="hidden" name="item_variant" id="variant" value="0" />
+                            <input type="hidden" id="tab" name="tab" value="1" />
                             <div class="row">
                                 <ul class="tab">
                                     <li class="active">
                                         <a id="tab1" href="#" onclick="return changeTab(this);">
                                             <span>
                                                 <em>
-                                                    @Model.Price
+                                                    Price
                                                 </em>
                                             </span>
                                         </a>
                                     </li>
                                 </ul>
-
-                                <ul id="blocktab1" class="choice" style="display:;">
+                                <ul id="blocktab1" class="choice" style="display: table;">
+                                    <li></li>
                                     <li>
-                                    <li>
-                                        <input id="alt_1_0" type="radio" class="radio" name="item_variant_1" value="0" checked="checked" style="display: none;" />
-                                        <strong>@Model.ProductID&nbsp;грн</strong>
-                                        <div class="old" style="line-height:100%;">
-                                            @Model.ProductID&nbsp;грн
-                                        </div>
+                                        <strong>@Model.Price$</strong>
                                     </li>
                                 </ul>
                             </div>
                             <div style="width:260px;">
-                                <button class="button" asp-action="AddToCart"
-                                        asp-controller="Cart" style="float:right">
+                                <button class="button" style="float: left;">
                                     Add to Cart
                                 </button>
+                                <i class="clear"></i>
                             </div>
                             <div class="note">
                                 <div id="promoNote" style="display:none;font-weight:bold;color:#FF0000;margin:5px 0;"></div>
                                 <span id="regiondeliveryinfo">
-                                    Доставка цветов
-                                    по
-                                    Киеву
+                                    Доставка
                                     &nbsp;&#151;&nbsp;
                                     <strong>бесплатно</strong>
                                 </span>
@@ -131,20 +90,25 @@
                         </fieldset>
                     </form>
                     <div class="description">
-                        <div itemprop="description" id="itemDescr"><b>Описание композиции:</b><br>Шикарный подарок, который не оставит равнодушной ни одну представительницу прекрасного пола!<br><div><b>Состав композиции:</b> 151 розовая роза, декоративная коробка, флористический  материал.</div><div><br></div></div>
+                        <div itemprop="description" id="itemDescr">
+                            <b>Descriptoins:</b><br>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                            Aenean commodo ligula eget dolor.Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+                            consectetur, adipisci velit ..."
+                            <div>
+                                <br>
+                            </div>
+                        </div>
                         <div>
                             <p>
                                 Ближайшее время доставки сегодня с 18:00, при оплате заказа до 18:00.
                             </p>
-                            <a class="fo-link opener block" href="#" onclick="return showFastOrderWin();"><span>Нужно быстрее?</span></a>
                             <i style="clear:both;"></i>
                         </div>
                     </div>
                 </div>
-                <br style="clear:both;" />
+                <br style="clear:both;">
             </div>
-
-            <div style="border-top:1px solid #E6E6E5; width:100%;">
+         <div style="border-top:1px solid #E6E6E5; width:100%;">
                 <div>
                     <a name="reviews" style="text-indent:-9999;">&nbsp;</a>
                     <p class="div-head" style="float:left;">Отзывы</p>
@@ -153,7 +117,7 @@
                     </div>
                     <div class="clear"></div>
                 </div>
-                <div class="feedback withoutbg">
+                <div class="feedback withoutbg"> 
                     Для этого товара еще никто не оставлял отзывов
                 </div>
 
@@ -167,737 +131,7 @@
                         <a class="contents altcontents jsAddReviewBtn" href="#"><span class="no-arrow">Добавить отзыв</span></a>
                     </div>
                 </div>
-            </div>
-
-
-            @*<div class="set-proposals">
-        <div class="head">
-            <div class="holder">
-                <h3>Смотрите также</h3>
-            </div>
-        </div>
-        <ul class="list">
-            <li>
-                <div class="wrap">
-                    <div class="bg-l">&nbsp;</div>
-                    <div class="bg-r">&nbsp;</div>
-                    <div class="bg-line">&nbsp;</div>
-                    <div class="box">
-                        <div class="visual">
-                            <a href="https://flowers.ua/ru/tsvety-v-korobke-151-krasnaya-roza">
-                                <img src="https://flowers.ua/images/Flowers/thumbnail/2337.jpg" width="195" height="195" alt="Цветы в коробке &quot;151 красная роза&quot;" />
-                            </a>
-                        </div>
-                        <div class="name"><a href="https://flowers.ua/ru/tsvety-v-korobke-151-krasnaya-roza">Цветы в коробке &quot;151 красная роза&quot;</a></div>
-                        <div class="price">
-                            <div class="bg">&nbsp;</div>
-                            <center>
-                                <table style="width:167px;">
-                                    <tr>
-                                        <td>
-                                            <div>3899&nbsp;грн</div>
-                                            <div class="old">6498&nbsp;грн</div>
-                                        </td>
-                                        <td>
-                                            <div style="float:right; height:27px; width:85px;">
-                                                <a class="button_order" onclick="return putInBasket(2337, 0);" href="#">Заказать</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="wrap">
-                    <div class="bg-l">&nbsp;</div>
-                    <div class="bg-r">&nbsp;</div>
-                    <div class="bg-line">&nbsp;</div>
-                    <div class="box">
-                        <div class="visual">
-                            <a href="https://flowers.ua/ru/tsvety-v-korobke-modnyy-stil">
-                                <img src="https://flowers.ua/images/Flowers/thumbnail/2019.jpg" width="195" height="195" alt="Цветы в коробке &quot;Модный стиль&quot;" />
-                            </a>
-                        </div>
-                        <div class="name"><a href="https://flowers.ua/ru/tsvety-v-korobke-modnyy-stil">Цветы в коробке &quot;Модный стиль&quot;</a></div>
-                        <div class="price">
-                            <div class="bg">&nbsp;</div>
-                            <center>
-                                <table style="width:167px;">
-                                    <tr>
-                                        <td>
-                                            <div>1499&nbsp;грн</div>
-                                        </td>
-                                        <td>
-                                            <div style="float:right; height:27px; width:85px;">
-                                                <a class="button_order" onclick="return putInBasket(2019, 0);" href="#">Заказать</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="wrap">
-                    <div class="bg-l">&nbsp;</div>
-                    <div class="bg-r">&nbsp;</div>
-                    <div class="bg-line">&nbsp;</div>
-                    <div class="box">
-                        <div class="visual">
-                            <a href="https://flowers.ua/ru/kompozitsiya-v-korobke-podarok-kazanovy">
-                                <img src="https://flowers.ua/images/Flowers/thumbnail/1819.jpg" width="195" height="195" alt="Композиция в коробке &quot;Подарок Казановы&quot;" />
-                            </a>
-                        </div>
-                        <div class="name"><a href="https://flowers.ua/ru/kompozitsiya-v-korobke-podarok-kazanovy">Композиция в коробке &quot;Подарок Казановы&quot;</a></div>
-                        <div class="price">
-                            <div class="bg">&nbsp;</div>
-                            <center>
-                                <table style="width:167px;">
-                                    <tr>
-                                        <td>
-                                            <div>2499&nbsp;грн</div>
-                                        </td>
-                                        <td>
-                                            <div style="float:right; height:27px; width:85px;">
-                                                <a class="button_order" onclick="return putInBasket(1819, 0);" href="#">Заказать</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="wrap">
-                    <div class="bg-l">&nbsp;</div>
-                    <div class="bg-r">&nbsp;</div>
-                    <div class="bg-line">&nbsp;</div>
-                    <div class="box">
-                        <div class="visual">
-                            <a href="https://flowers.ua/ru/tsvety-v-korobke-roskoshnyy-stil">
-                                <img src="https://flowers.ua/images/Flowers/thumbnail/2112.jpg" width="195" height="195" alt="Цветы в коробке &quot;Роскошный стиль&quot;" />
-                            </a>
-                        </div>
-                        <div class="name"><a href="https://flowers.ua/ru/tsvety-v-korobke-roskoshnyy-stil">Цветы в коробке &quot;Роскошный стиль&quot;</a></div>
-                        <div class="price">
-                            <div class="bg">&nbsp;</div>
-                            <center>
-                                <table style="width:167px;">
-                                    <tr>
-                                        <td>
-                                            <div>2159&nbsp;грн</div>
-                                        </td>
-                                        <td>
-                                            <div style="float:right; height:27px; width:85px;">
-                                                <a class="button_order" onclick="return putInBasket(2112, 0);" href="#">Заказать</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>*@
-        </div>
-        </div>
-    </div>
-
-    <script type="text/javascript">
-    var urlHome   = "https://flowers.ua";
-    var urlDesign = "https://flowers.ua/design/Flowers";
-    var lang      = "ru";
-
-    var itemId              = 2339;
-    var productUrl          = "tsvety-v-korobke-151-rozovaya-roza";
-    var showedVideo         = true;
-	var variantId           = 0;
-	var prevVariantId       = 0;
-	var isDynamic           = false;
-	var isVariatedProduct   = false;
-	var activeTab           = 1;
-	var promoTxtTemplate    = 'Вы получаете %NUM% роз(у/ы) в подарок!';
-	var activeStar          = 1;
-	var activeStarImgUrl    = "https://flowers.ua/design/Flowers/StalLightBIG.png";
-	var inactiveStarImgUrl  = "https://flowers.ua/design/Flowers/StalDarkBIG.png";
-	var videoCode           = '';
-	var videoIsEmbed        = false;
-	var mustStartVideo      = false;
-	var variant_desr        = {};
-    var variant_name        = {};
-    var variant_image       = {};
-    var variant_ext_images  = {};
-    var variant_zoom_images = {};
-	var variantNameHash     = {};
-    var itemVariantName     = '';
-    var currentTab          = 1;
-    var dealsText           = {};
-
-    variant_zoom_images['0'] = [];
-
-
-
-    $(function() {
-        $(".photo-delivery:not(.slideshow) a[rel^='prettyPhoto']").prettyPhoto({
-            social_tools    : false,
-            deeplinking     : false,
-            overlay_gallery : false,
-            deep_linking    : false
-        });
-
-        $(".jsAddReviewBtn").click(function() {
-            var placeHere = $(this).closest(".main-order-form");
-
-            var postedData = {
-                "action" : "getAddReviewForm",
-                "postedData" : {
-                    "productId"  : itemId,
-                    "productUrl" : productUrl
-                }
-            };
-
-            $.post(urlHome + "/guestbook", postedData, function(response) {
-                if (response.__status === "ok") {
-                    $(placeHere).after(response.__data.html).remove();
-
-                    highlightRate("#" + ($("#rating").val() - 1));
-                    activateStar("#" + ($("#rating").val() - 1));
-                }
-            }, "json");
-
-            return false;
-        });
-
-        if (isVariatedProduct) {
-            $("li:not(.disabled) [type='radio'], tr:not(.disabled) [type='radio']", "[id^='blocktab']:visible, [id*=' blocktab']:visible").first().click();
-        }
-
-        if (mustStartVideo) {
-            changeImage(null, 0, 1);
-        }
-
-        var zoomImgList = [];
-        $.each(variant_zoom_images, function(i, variant){
-            $.each(variant, function(j, url){
-                zoomImgList.push(url);
-            });
-        });
-
-        preloadImages(zoomImgList);
-
-        highlightRate("#" + ($("#rating").val() - 1));
-        activateStar("#" + ($("#rating").val() - 1));
-
-
-
-        $('.extimgs li[id^="img_"]').each(function(ind, el){
-            var zoomUrl = '';
-            if (ind in variant_zoom_images['0']) {
-                zoomUrl = variant_zoom_images['0'][ind];
-            }
-
-            $(el)
-	            .click(function(e){
-	                e = e ? e : window.event;
-	                e.preventDefault();
-	                changeImage(el, 0, 0, zoomUrl);
-	            });
-        });
-
-        $('.zoomwrap').mousemove(function(move_event){
-            move_event = move_event ? move_event : window.event;
-
-            var img         = $('img', this);
-            var newImagePos = _getZoomPos(move_event, this);
-
-            $(img).css({
-                'top'  : -newImagePos.posY + 'px',
-                'left' : -newImagePos.posX + 'px'
-            });
-        });
-
-        if (itemVariantName && variantNameHash[itemVariantName] !== undefined && $("#alt_" + currentTab + "_" + variantNameHash[itemVariantName]).size()) {
-        	$("#alt_" + currentTab + "_" + variantNameHash[itemVariantName]).click();
-        }
-
-        $('body').append(
-                $('<div>')
-                    .attr("id", "tooltip")
-                    .append(
-                        $('<img>').addClass('corner').attr('src', urlDesign + '/tooltip-corner.png'),
-                        $('<img>').addClass('info').attr('src', urlDesign + '/info.png'),
-                        $('<div>').css({
-                            'left': '0',
-                             'margin': '5px 0 5px 25px',
-                             'overflow': 'hidden',
-                             'position': 'relative',
-                             'top': '0'
-                        }).append(
-                            $('<p>').html(dealsText[lang])
-                        )
-                    ).css({
-                    	top  : '0px',
-                    	left : '0px'
-                    })
-            );
-    });
-
-    $("#dealsBanner").mousemove(function(e) {
-  	    $("#tooltip").css({
-  	        top: e.pageY + 5,
-  	        left:e.pageX + 15
-  	    });
-  	}).mouseover(function() {
-  	    $("#tooltip").show();
-  	}).mouseout(function() {
-  	    $("#tooltip").hide();
-  	});
-
-    function _getZoomPos(event, wrap) {
-        var wrapOffset = $(wrap).offset();
-        var wrapWidth  = $(wrap).width();
-        var wrapHeight = $(wrap).height();
-        var img        = $('img', wrap);
-        var imgWidth   = $(img).width();
-        var imgHeight  = $(img).height();
-        var cursorX    = event.pageX - wrapOffset.left;
-        var cursorY    = event.pageY - wrapOffset.top;
-
-        var newImagePosX = cursorX * ((imgWidth - wrapWidth) / wrapWidth);
-        var newImagePosY = cursorY * ((imgHeight - wrapHeight) / wrapHeight);
-
-        return {'posX' : newImagePosX, 'posY' : newImagePosY};
-    }
-
-	function getVariant(num) {
-	    $('.visual.image, .quality-mark').show();
-        $('.visual.video').hide();
-
-	    $('#productImage')
-		    .attr({
-		        'src' : variant_image[num],
-		        'alt' : variant_name[num]
-	        })
-		    .unbind('click')
-	        .removeClass('zoom-in');
-
-	    if (variant_zoom_images[num]['0']) {
-	        $('#productImage')
-	            .addClass('zoom-in')
-	            .click(function(event) {
-	                event = event ? event : window.event;
-	                zoomImage(event, variant_zoom_images[num]['0']);
-	            });
-	    }
-
-	    $('#itemDescr').html(variant_desr[num]);
-	    $('#variant').val(num);
-
-	    prevVariantId = variantId;
-	    variantId     = num;
-	    if (isDynamic) {
-            delay('dynamicRecalc()', 100);
-	    }
-
-	    if (variant_ext_images[num].length > 0 || videoCode.length) {
-	        var list = $();
-	        var zoomUrl = variant_zoom_images[num]['0'] ? variant_zoom_images[num]['0'] : '';
-
-	        list = list.add(
-                $('<li>')
-                    .click(function(e){
-                        e = e ? e : window.event;
-                        e.preventDefault();
-                        changeImage(this, 0, 0, zoomUrl);
-                    })
-                    .attr({
-                        'id'   : 'img_',
-                        'href' : '#'
-                    })
-                    .append(
-                        $('<img>')
-                            .attr({
-                                'alt' : 'common',
-                                'src' : variant_image[num],
-                            })
-                    )
-                    /*
-                    .append(
-                        $('<a>')
-                            .click(function(e){
-                                e = e ? e : window.event;
-                                e.preventDefault();
-                                changeImage(this, 0, 0, zoomUrl);
-                            })
-                            .attr({
-                                'id'   : 'img_',
-                                'href' : '#'
-                            })
-                            .append(
-                                $('<img>')
-                                    .attr({
-                                        'alt' : 'common',
-                                        'src' : variant_image[num],
-                                    })
-                            )
-
-                    )
-                    */
-            );
-
-	        $.each(variant_ext_images[num], function(ind, imgUrl){
-	            var view = ind + 1;
-	            var zoomUrl = variant_zoom_images[num][view] ? variant_zoom_images[num][view] : '';
-
-	            list = list.add(
-	                $('<li>')
-	                    .click(function(e){
-                            e = e ? e : window.event;
-                            e.preventDefault();
-                            changeImage(this, 0, 0, zoomUrl);
-                        })
-                        .attr({
-                            'id'   : 'img_' + ind,
-                            'href' : '#'
-                        })
-                        .append(
-                            $('<img>')
-                                .attr({
-                                    'alt' : 'ext_' + ind,
-                                    'src' : imgUrl,
-                                })
-                        )
-	                    /*
-	                    .append(
-	                        $('<a>')
-	                            .click(function(e){
-	                                e = e ? e : window.event;
-		                            e.preventDefault();
-		                            changeImage(this, 0, 0, zoomUrl);
-		                        })
-		                        .attr({
-		                            'id'   : 'img_' + ind,
-		                            'href' : '#'
-		                        })
-		                        .append(
-		                            $('<img>')
-		                                .attr({
-		                                    'alt' : 'ext_' + ind,
-		                                    'src' : imgUrl,
-		                                })
-		                        )
-                        )
-                        */
-                );
-	        });
-
-	        if (videoCode.length) {
-	            list = list.add($('.ico-video'));
-	        }
-
-	        if (list.length > 3) {
-	            $('.extimgs ul.list').addClass('perFour');
-	        } else {
-	            $('.extimgs ul.list').removeClass('perFour');
-	        }
-
-	        $('.extimgs ul.list li').remove();
-	        $('.extimgs ul.list').append(list);
-	    }
-	}
-
-	function changeImage(element, shift, type, zoom_url) {
-	    if (type) {
-	        $('.visual.image, .quality-mark, .zoomwrap').hide();
-	        if (!videoIsEmbed) {
-	            $('.videowrap').html(videoCode);
-	            videoIsEmbed = true;
-	        }
-	        $('.visual.video, .videowrap').show();
-	    } else {
-	        $('.visual.image, .quality-mark').show();
-	        $('.visual.video, .videowrap, .zoomwrap').hide();
-
-		    $('#productImage')
-                .unbind('click')
-		        .removeClass('zoom-in')
-		        .attr('src', $('img', element).attr('src'))
-		        .attr("alt", $("img", element).attr("alt"))
-		        .attr("title", $("img", element).attr("title"))
-
-		    if (zoom_url) {
-		        $('#productImage')
-	                .addClass('zoom-in')
-	                .click(function(event) {
-	                    event = event ? event : window.event;
-	                    zoomImage(event, zoom_url);
-	                });
-		    }
-	    }
-
-	    return false;
-	}
-
-	function zoomImage(clk_event, zoom_url) {
-	    if (zoom_url) {
-	        $('.zoomwrap')
-	            .empty()
-	            .append(
-	                $('<img>')
-	                    .attr({
-	                        'src' : zoom_url
-	                    })
-	                    .click(function() {
-	                        $('.visual.video').hide();
-	                        $('.visual.image, .quality-mark').show();
-	                    })
-	            );
-
-	        $('.visual.image, .quality-mark').hide();
-	        $('.visual.video, .zoomwrap').show();
-
-	        var newImagePos = _getZoomPos(clk_event, $('.zoomwrap'));
-	        $('.zoomwrap img').css({
-                'top'  : (- newImagePos.posY) + 'px',
-                'left' : (- newImagePos.posX) + 'px'
-            });
-	    }
-
-	    return false;
-	}
-
-
-
-
-	function changeTab(el) {
-	    if ($(el).attr('id') == 'tab2') {
-	        $('#holiday').val();
-	        num = $('form :radio[name=item_variant_2]:checked').val();
-	        $('#dynamic_num2').val($('#dynamic_num').val());
-	        tabId  = 2;
-	    } else {
-	        $('#holiday').val(0);
-	        if ($(el).attr('id') == 'tab1') {
-	            num = $('form :radio[name=item_variant_1]:checked').val();
-	            $('#dynamic_num1').val(jQuery('#dynamic_num').val());
-	            tabId  = 1;
-	        } else if ($(el).attr('id') == 'tab3') {
-	            num = $('form :radio[name=item_variant_3]:checked').val();
-	            $('#dynamic_num3').val(jQuery('#dynamic_num').val());
-	            tabId  = 3;
-	        }
-	    }
-	    activeTab = tabId;
-	    if (isDynamic) dynamicRecalc();
-	    $('#variant').val(num);
-		var block = $('#block' + $(el).attr('id'));
-		$('ul.choice').hide();
-		$(block).show();
-		$('ul.tab').find('li').removeClass('active');
-		$(el).parent().attr('class', 'active');
-		$('#tab').val($(el).attr('id'));
-
-        $("li:not(.disabled) [type='radio'], tr:not(.disabled) [type='radio']", "[id^='blocktab']:visible, [id*=' blocktab']:visible").first().click();
-
-		return false;
-	}
-
-    function highlightRate(selector)
-    {
-        if ($(selector).size()) {
-            var id = +$(selector).attr("id");
-
-            id = id > 5 ? 5 : id;
-
-            for (var i = activeStar; i <= id; i++) {
-                $("#" + i).attr("src", activeStarImgUrl);
-            }
-        }
-    }
-
-    function offRate()
-    {
-        for (var i = activeStar; i <= 5; i++) {
-            $("#" + i).attr("src", inactiveStarImgUrl);
-        }
-    }
-
-    function activateStar(selector)
-    {
-        if ($(selector).size()) {
-            var id = +$(selector).attr("id");
-
-            id = id > 5 ? 5 : id;
-
-            activeStar = id + 1;
-
-            offRate();
-
-            $("#rating").val(activeStar);
-        }
-    }
-
-    function plusVideoShow() {
-        $.post(urlHome + '/plus-video-show',  {itemId:itemId}, function (response) {
-            if (response.__status == "ok") {
-            }
-        }, "json");
-        console.log(urlHome + '/plus-video-show');
-        return showedVideo = true;
-    }
-
-  (function($){
-	$.fn.popupWindow = function(instanceSettings){
-
-		return this.each(function(){
-
-		$(this).click(function(){
-
-		$.fn.popupWindow.defaultSettings = {
-			centerBrowser:0, // center window over browser window? {1 (YES) or 0 (NO)}. overrides top and left
-			centerScreen:0, // center window over entire screen? {1 (YES) or 0 (NO)}. overrides top and left
-			height:500, // sets the height in pixels of the window.
-			left:0, // left position when the window appears.
-			location:0, // determines whether the address bar is displayed {1 (YES) or 0 (NO)}.
-			menubar:0, // determines whether the menu bar is displayed {1 (YES) or 0 (NO)}.
-			resizable:0, // whether the window can be resized {1 (YES) or 0 (NO)}. Can also be overloaded using resizable.
-			scrollbars:0, // determines whether scrollbars appear on the window {1 (YES) or 0 (NO)}.
-			status:0, // whether a status line appears at the bottom of the window {1 (YES) or 0 (NO)}.
-			width:500, // sets the width in pixels of the window.
-			windowName:null, // name of window set from the name attribute of the element that invokes the click
-			windowURL:null, // url used for the popup
-			top:0, // top position when the window appears.
-			toolbar:0 // determines whether a toolbar (includes the forward and back buttons) is displayed {1 (YES) or 0 (NO)}.
-		};
-
-		settings = $.extend({}, $.fn.popupWindow.defaultSettings, instanceSettings || {});
-
-		var windowFeatures =    'height=' + settings.height +
-								',width=' + settings.width +
-								',toolbar=' + settings.toolbar +
-								',scrollbars=' + settings.scrollbars +
-								',status=' + settings.status +
-								',resizable=' + settings.resizable +
-								',location=' + settings.location +
-								',menuBar=' + settings.menubar;
-
-				settings.windowName = this.name || settings.windowName;
-				settings.windowURL = this.href || settings.windowURL;
-				var centeredY,centeredX;
-
-				if(settings.centerBrowser){
-
-					if ($.browser.msie) {//hacked together for IE browsers
-						centeredY = (window.screenTop - 120) + ((((document.documentElement.clientHeight + 120)/2) - (settings.height/2)));
-						centeredX = window.screenLeft + ((((document.body.offsetWidth + 20)/2) - (settings.width/2)));
-					}else{
-						centeredY = window.screenY + (((window.outerHeight/2) - (settings.height/2)));
-						centeredX = window.screenX + (((window.outerWidth/2) - (settings.width/2)));
-					}
-					window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY).focus();
-				}else if(settings.centerScreen){
-					centeredY = (screen.height - settings.height)/2;
-					centeredX = (screen.width - settings.width)/2;
-					window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + centeredX +',top=' + centeredY).focus();
-				}else{
-					window.open(settings.windowURL, settings.windowName, windowFeatures+',left=' + settings.left +',top=' + settings.top).focus();
-				}
-				return false;
-			});
-
-		});
-	};
-})(jQuery);
-    $('#share').popupWindow({
-        width:550,
-        height:400,
-        centerBrowser:1
-    });
-
-    </script>
-    <div class="information-box">
-        <div class="tel-box">
-            <p class="div-head">Наши телефоны</p>
-            <ul>
-                <li><strong>(044) 585-88-99</strong> <span>— Киев</span></li>
-                <li><strong>(056) 790-98-00 </strong> <span>— Днепропетровск</span></li>
-                <li><strong>(067) 355-77-55</strong> <span>— Украина</span></li>
-                <li><strong>+7-495-204-15-31</strong> <span>— Москва</span></li>
-                <li><strong>+1-718-475-92-72</strong> <span>— Нью-Йорк</span></li>
-                <li><strong>0-800 50-03-72</strong> <span>— Звонки на территории Украины со стационарных телефонов бесплатны</span></li>
-            </ul>
-            <div class="note">*Мы работаем круглосуточно</div>
-            <div class="email"><strong>e-mail:</strong><a href="mailto:&#105;&#110;&#102;&#111;&#064;&#102;&#108;&#111;&#119;&#101;&#114;&#115;&#046;&#117;&#097;">&#105;&#110;&#102;&#111;&#064;&#102;&#108;&#111;&#119;&#101;&#114;&#115;&#046;&#117;&#097;</a></div>
-            <p class="div-head lvl-5">Доставка цветов по Украине</p>
-            <div class="note">
-                <a href="https://flowers.ua/ru/kiev">Доставка цветов Киев</a><br />
-                <a href="https://flowers.ua/en">Flowers to Ukraine</a>
-            </div>
-        </div>
-    </div>
-    <div class="links-block">
-        Заказ в&nbsp;&nbsp;|
-
-        <b>
-            <a href="https://flowers.ua/ru/kiev" class="regionLink">Киев</a>
-        </b> |
-        <a href="https://flowers.ua/ru/vinica" class="regionLink">Винница</a>
-        |
-        <a href="https://flowers.ua/ru/dnepr" class="regionLink">Днепр (Днепропетровск)</a>
-        |
-        <a href="https://flowers.ua/ru/doneck" class="regionLink">Донецк</a>
-        |
-        <a href="https://flowers.ua/ru/zhitomir" class="regionLink">Житомир</a>
-        |
-        <a href="https://flowers.ua/ru/zaporozhie" class="regionLink">Запорожье</a>
-        |
-        <a href="https://flowers.ua/ru/frankovsk" class="regionLink">Ивано-Франковск</a>
-        |
-        <a href="https://flowers.ua/ru/kirovograd" class="regionLink">Кропивницкий (Кировоград)</a>
-        |
-        <a href="https://flowers.ua/ru/kremenchug" class="regionLink">Кременчуг</a>
-        |
-        <a href="https://flowers.ua/ru/krivoy rog" class="regionLink">Кривой Рог</a>
-        |
-        <a href="https://flowers.ua/ru/lugansk" class="regionLink">Луганск</a>
-        |
-        <a href="https://flowers.ua/ru/luck" class="regionLink">Луцк</a>
-        |
-        <a href="https://flowers.ua/ru/lviv" class="regionLink">Львов</a>
-        |
-        <a href="https://flowers.ua/ru/nikolaev" class="regionLink">Николаев</a>
-        |
-        <a href="https://flowers.ua/ru/odessa" class="regionLink">Одесса</a>
-        |
-        <a href="https://flowers.ua/ru/poltava" class="regionLink">Полтава</a>
-        |
-        <a href="https://flowers.ua/ru/rovno" class="regionLink">Ровно</a>
-        |
-        <a href="https://flowers.ua/ru/sumi" class="regionLink">Сумы</a>
-        |
-        <a href="https://flowers.ua/ru/ternopol" class="regionLink">Тернополь</a>
-        |
-        <a href="https://flowers.ua/ru/uzhgorod" class="regionLink">Ужгород</a>
-        |
-        <a href="https://flowers.ua/ru/xarkov" class="regionLink">Харьков</a>
-        |
-        <a href="https://flowers.ua/ru/kherson" class="regionLink">Херсон</a>
-        |
-        <a href="https://flowers.ua/ru/hmelnitsk" class="regionLink">Хмельницкий</a>
-        |
-        <a href="https://flowers.ua/ru/cherkassy" class="regionLink">Черкассы</a>
-        |
-        <a href="https://flowers.ua/ru/chernovcy" class="regionLink">Черновцы</a>
-        |
-        <a href="https://flowers.ua/ru/chernigov" class="regionLink">Чернигов</a>
-        |
-        <a href="https://flowers.ua/ru/regions" class="regionLink">другие регионы</a>
-    </div> 
+         </div>
+        <div class="set-proposals"></div>            
+     </div>
+ </div>

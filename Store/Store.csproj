@@ -14,4 +14,10 @@
     
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Product\Image.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

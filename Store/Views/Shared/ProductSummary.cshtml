@@ -1,4 +1,5 @@
 ﻿@model Product
+
 <li>
     <div class="wrap">
         <div class="bg-l">&nbsp;</div>
@@ -6,15 +7,15 @@
         <div class="bg-line">&nbsp;</div>
         <div class="box">
             <div class="visual">
-                @if (Model.Image != null)
-                {
-                    <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
-                        <img src="@Url.Content(Model.Image.Path)" width="195" height="195" />
-                    </a>
-                }
+                <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
+                    @Html.Partial("Image.cshtml", @Model)
+                </a>
+            </div> 
+            <div class="name">
+                <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
+                @Model.Name
+                </a>
             </div>
-
-            <div class="name"><a href="">@Model.Name</a></div>
             <div class="price">
                 <div class="bg">&nbsp;</div>
                 <table style="text-align:center; width:167px;">
