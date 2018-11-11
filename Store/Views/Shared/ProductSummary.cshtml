@@ -7,12 +7,12 @@
         <div class="bg-line">&nbsp;</div>
         <div class="box">
             <div class="visual">
-                <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
+                <a asp-action="Product" asp-controller="Product" asp-route-id="@Model.ProductID">
                     @Html.Partial("Image.cshtml", @Model)
                 </a>
             </div> 
             <div class="name">
-                <a asp-action="Product" asp-controller="Product" asp-route-productId="@Model.ProductID">
+                <a asp-action="Product" asp-controller="Product" asp-route-id="@Model.ProductID">
                 @Model.Name
                 </a>
             </div>

@@ -26,19 +26,19 @@
         <span style="font-weight:bold;">
             Home
         </span>
-    </a>
+    </a> 
 </li>
 @foreach (string category in Model)
 {
-    <li>
+ <li>
         <a class="tab"
            asp-action="List"
            asp-controller="Product"
            asp-route-category="@category"
-           asp-route-productPage="1">
+           asp-route-page="1">
             <span style="">
                 @category
              </span>
         </a>
-    </li>
+</li>
 }

@@ -18,10 +18,10 @@ namespace Store.Controllers
             repository = repo;
         }
 
-        public ViewResult Product(int productId)
+        public ViewResult Product(int id)
         {
             Product product = repository.Products
-                .FirstOrDefault(p => p.ProductID == productId);
+                .FirstOrDefault(p => p.ProductID == id);
 
             if (product == null)
             {
@@ -30,24 +30,28 @@ namespace Store.Controllers
             return View(product);
         }
 
-        public ViewResult List(string category, int productPage = 1)
-            => View(new ProductsListViewModel
+        public ViewResult List(string category, int page = 1)
+        {
+            var viewModel = new ProductsListViewModel
             {
                 Products = repository.Products
-                .Where(p => category == null || p.Category == category)
-                .OrderBy(p => p.ProductID)
-                .Skip((productPage - 1) * PageSize)
-                .Take(PageSize),
+                            .Where(p => category == null || p.Category == category)
+                            .OrderBy(p => p.ProductID)
+                            .Skip((page - 1) * PageSize)
+                            .Take(PageSize),
                 PagingInfo = new PagingInfo
                 {
-                    CurrentPage = productPage,
+                    CurrentPage = page,
                     ItemsPerPage = PageSize,
-                    TotalItems =  category == null ?
-                        repository.Products.Count() :
-                        repository.Products.Where(e =>
-                            e.Category == category).Count()
+                    TotalItems = category == null ?
+                                    repository.Products.Count() :
+                                    repository.Products.Where(e =>
+                                        e.Category == category).Count()
                 },
                 CurrentCategory = category
-            });
+            };
+            return View("~/Views/Product/List.cshtml", viewModel);
+        }
+            
     }
 }
