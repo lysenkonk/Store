@@ -41,15 +41,15 @@ namespace Store.Controllers
             FileModel file = null;
             if (uploadedFile != null)
             {
-                string path = "/Files/" + uploadedFile.FileName;
+                string path = "/Files/Bg/" + uploadedFile.FileName;
 
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/Files/Bg/" + uploadedFile.FileName, FileMode.Create))
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
 
                 Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 195, 195);
-                resized.Save(_appEnvironment.WebRootPath + "/Files/Small/" + uploadedFile.FileName, ImageFormat.Png);
+                resized.Save(_appEnvironment.WebRootPath + "/Files/Sm/" + uploadedFile.FileName, ImageFormat.Png);
                 file = new FileModel { Name = uploadedFile.FileName, Path = path };
             }
             if (ModelState.IsValid)
@@ -63,21 +63,6 @@ namespace Store.Controllers
                 return View(product);
             }
         }
-
-        public static Bitmap ResizeImage(Stream stream, int width, int height)
-        {
-            var resized = new Bitmap(width, height);
-            using (var image = new Bitmap(stream))
-            using (var graphics = Graphics.FromImage(resized))
-            {
-                graphics.CompositingQuality = CompositingQuality.HighSpeed;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.DrawImage(image, 0, 0, width, height);
-            }
-
-            return resized;
-        }
         
         public ViewResult Create() => View("Edit", new Product());
 
@@ -90,6 +75,21 @@ namespace Store.Controllers
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
             }
             return RedirectToAction("Index");
+        }
+
+        private static Bitmap ResizeImage(Stream stream, int width, int height)
+        {
+            var resized = new Bitmap(width, height);
+            using (var image = new Bitmap(stream))
+            using (var graphics = Graphics.FromImage(resized))
+            {
+                graphics.CompositingQuality = CompositingQuality.HighSpeed;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.DrawImage(image, 0, 0, width, height);
+            }
+
+            return resized;
         }
     }
 }
