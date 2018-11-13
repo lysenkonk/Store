@@ -1,7 +1,7 @@
 ﻿@model Product
 @if (Model.Image != null)
 {
-    <img style="width:100%;" itemprop="image" src="@Url.Content(Model.Image.Path)" alt="@Model.Name" title="@Model.Name" class="zoom-in">
+    <img style="width:100%;"  itemprop="image" src="@Url.Content(Model.Image.Path)" alt="@Model.Name" title="@Model.Name" class="zoom-in">
 }
 else
 {
