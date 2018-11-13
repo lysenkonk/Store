@@ -1,61 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 namespace Store.Models
 {
     public class EFProductRepository : IProductRepository
     {
-        private ApplicationDbContext context;
-        //IHostingEnvironment _appEnviroment;
+        private readonly ApplicationDbContext _context;
 
-        public EFProductRepository(ApplicationDbContext ctx /*IHostingEnvironment appEnvironment*/)
+        public EFProductRepository(ApplicationDbContext ctx)
         {
-            context = ctx;
-            //_appEnviroment = appEnvironment;
+            _context = ctx;
         }
-        public IQueryable<Product> Products => context.Products.Include(p => p.Image);
+        public IQueryable<Product> Products => _context.Products.Include(p => p.Images);
 
-        //public IQueryable<Product> Products()
-        //{
-        //    context.Products.I
-        //}
-
-        public void SaveProduct(Product product, FileModel image)
+        public async Task<Product> SaveProductAsync(Product product)
         {
             if(product.ProductID == 0)
             {
-                context.Products.Add(product);
-            }else
+                _context.Products.Add(product);
+            }
+            else
             {
-                Product dbEntry = context.Products
-                    .FirstOrDefault(p => p.ProductID == product.ProductID);
+                Product dbEntry = _context.Products.FirstOrDefault(p => p.ProductID == product.ProductID);
+
                 if(dbEntry != null)
                 {
                     dbEntry.Name = product.Name;
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Category = product.Category;
-                    dbEntry.Image = image;
                 }
             }
-            context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return product;
         }
 
-        public Product DeleteProduct(int productID)
+        public async Task<Product> DeleteProductAsync(int productID)
         {
-            Product dbEntry = context.Products
+            Product dbEntry = _context.Products
                 .FirstOrDefault(p => p.ProductID == productID);
-            if(dbEntry != null)
+            if (dbEntry != null)
             {
-                context.Products.Remove(dbEntry);
-                context.SaveChanges();
+                _context.Products.Remove(dbEntry);
+                await _context.SaveChangesAsync();
             }
+
             return dbEntry;
         }
-    }
 
+        public async Task<FileModel> AddImageAsync(int productId, FileModel image)
+        {
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ProductID == productId);
+
+            if (dbEntry == null)
+                throw new Exception("404 Not Found produc");
+
+            dbEntry.Images.Add(image);
+            await _context.SaveChangesAsync();
+            return image;
+        }
+
+        public async Task<FileModel> RemoveImageAsync(int productId, string fileName)
+        {
+            Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ProductID == productId);
+
+            if (dbEntry == null)
+                throw new Exception("404 Not Found produc");
+
+            FileModel image = dbEntry.Images.FirstOrDefault(img => img.Name == fileName);
+
+            if (image == null)
+                throw new Exception("404 Not Found Image");
+
+            dbEntry.Images.Remove(image);
+            await _context.SaveChangesAsync();
+            return image;
+        }
+    }
 }

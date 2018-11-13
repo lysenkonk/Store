@@ -11,6 +11,7 @@ namespace Store.Models
 
         public string Name { get; set; }
 
+        //TODO remove it and make migration to delete column
         public string Path { get; set; }
     }
 }

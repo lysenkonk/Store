@@ -10,8 +10,12 @@ namespace Store.Models
     {
         IQueryable<Product> Products { get; }
 
-        void SaveProduct(Product product, FileModel file);
+        Task<Product> SaveProductAsync(Product product);
 
-        Product DeleteProduct(int productID);
+        Task<Product> DeleteProductAsync(int productID);
+
+        Task<FileModel> AddImageAsync(int productId, FileModel image);
+
+        Task<FileModel> RemoveImageAsync(int productId, string fileName);
     }
 }

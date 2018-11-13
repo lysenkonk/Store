@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Store.Models;
+using System.Collections.Generic;
 
 namespace SportsStore.Models
 {
@@ -19,7 +20,7 @@ namespace SportsStore.Models
                 new Product
                 {
                     Name = "Kayak",
-                    Image = new FileModel() { Name = "3.bmp", Path = "/Files/3.bmp" },
+                    Images = new List<FileModel>() { new FileModel() { Name = "3.bmp", Path = "/Files/3.bmp" } },
                     Description = "A boat for one person",
                     Category = "Watersports",
                     Price = 275
@@ -27,7 +28,7 @@ namespace SportsStore.Models
                 new Product
                 {
                     Name = "Lifejacket",
-                    Image = new FileModel() { Name = "5.jpg", Path = "/Files/5.jpg" },
+                    Images = new List<FileModel>() { new FileModel() { Name = "5.jpg", Path = "/Files/5.jpg" } },
                     Description = "Protective and fashionable",
                     Category = "Watersports",
                     Price = 48.95m

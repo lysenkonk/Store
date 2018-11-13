@@ -11,50 +11,38 @@ using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using Store.Services;
 
 namespace Store.Controllers
 {
     [Authorize]
     public class AdminController : Controller
     {
-        private IProductRepository repository;
+        private readonly ProductsService _productsService;
         IHostingEnvironment _appEnvironment;
 
-        public AdminController(IProductRepository repo, IHostingEnvironment appEnvironment)
+        public AdminController(ProductsService service, IHostingEnvironment appEnvironment)
         {
-            repository = repo;
+            _productsService = service;
             _appEnvironment = appEnvironment;
         }
         public ViewResult Index()
         {
-            return View(repository.Products);
+            return View(_productsService.Products);
         }
             
 
         public ViewResult Edit(int productId) =>
-            View(repository.Products
+            View(_productsService.Products
                 .FirstOrDefault(p => p.ProductID == productId));
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Product product, IFormFile uploadedFile)
+        public async Task<IActionResult> Edit(Product product)
         {
-            FileModel file = null;
-            if (uploadedFile != null)
-            {
-                string path = "/Files/Bg/" + uploadedFile.FileName;
-
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + "/Files/Bg/" + uploadedFile.FileName, FileMode.Create))
-                {
-                    await uploadedFile.CopyToAsync(fileStream);
-                }
-
-                Bitmap resized = ResizeImage(uploadedFile.OpenReadStream(), 195, 195);
-                resized.Save(_appEnvironment.WebRootPath + "/Files/Sm/" + uploadedFile.FileName, ImageFormat.Png);
-                file = new FileModel { Name = uploadedFile.FileName, Path = path };
-            }
+            
             if (ModelState.IsValid)
             {
-                repository.SaveProduct(product, file);
+                await _productsService.SaveProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
                 return RedirectToAction("Index");
             }
@@ -63,13 +51,27 @@ namespace Store.Controllers
                 return View(product);
             }
         }
-        
+
+        public async Task<IActionResult> RemoveImage(int productId, string imageName)
+        {
+            await _productsService.RemoveImage(productId, imageName);
+
+            return Ok();
+        }
+
+        public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
+        {
+            await _productsService.AddImage(productId, uploadedFile);
+
+            return Ok();
+        }
+
         public ViewResult Create() => View("Edit", new Product());
 
         [HttpPost]
-        public IActionResult Delete(int productId)
+        public async Task<IActionResult> Delete(int productId)
         {
-            Product deletedProduct = repository.DeleteProduct(productId);
+            Product deletedProduct =  await _productsService.DeleteProductAsync(productId);
             if (deletedProduct != null)
             {
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
@@ -77,19 +79,6 @@ namespace Store.Controllers
             return RedirectToAction("Index");
         }
 
-        private static Bitmap ResizeImage(Stream stream, int width, int height)
-        {
-            var resized = new Bitmap(width, height);
-            using (var image = new Bitmap(stream))
-            using (var graphics = Graphics.FromImage(resized))
-            {
-                graphics.CompositingQuality = CompositingQuality.HighSpeed;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.DrawImage(image, 0, 0, width, height);
-            }
-
-            return resized;
-        }
+        
     }
 }

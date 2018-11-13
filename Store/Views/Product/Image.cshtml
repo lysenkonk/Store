@@ -1,7 +1,7 @@
-﻿@model Product
-@if (Model.Image != null)
+﻿@model FileModel
+@if (Model != null)
 {
-    <img style="width:100%;" itemprop="image" src="@Url.Content("/Files/Bg/" + Model.Image.Name)" alt="@Model.Name" title="@Model.Name" class="zoom-in">
+    <img style="width:100%;" id="#img_01" src="@Url.Content("/Files/Bg/" + Model.Name)" data-zoom-image="@Url.Content("/Files/Bg/" + Model.Name)" alt="@Model.Name" title="@Model.Name" class="zoom-in"/>
 }
 else
 {

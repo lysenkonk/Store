@@ -27,11 +27,21 @@
         <div> <span asp-validation-for="Price" class="text-danger"></span></div>
         <input asp-for="Price" class="form-control" />
     </div>
+    @foreach (FileModel image in Model.Images)
+    {
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <div> <span asp-validation-for="Image" class="figure-img"></span></div>
+            <input type="button" onclick="" />
+        </div>
+    }
+
     <div class="form-group">
-        <label asp-for="Image"></label>
+        <label asp-for="Images"></label>
         <div> <span asp-validation-for="Image" class="figure-img"></span></div>
         <input type="file" name="uploadedFile" />
     </div>
+
     <div class="text-center">
         <button class="btn btn-primary" type="submit">Save</button>
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>

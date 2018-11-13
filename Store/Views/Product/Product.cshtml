@@ -25,32 +25,47 @@
             </div>
          <h1 itemprop="name">@Model.Name</h1>
          <div class="container2">
-                <div class="visual-block">
-                    <div class="visual image large">
-                        <div class="bg-line">&nbsp;</div>
-                        @Html.Partial("Image.cshtml", @Model)
+             <div class="visual-block">
+                 <div class="visual image large">
+                     <div class="bg-line">&nbsp;</div>
+                         @Html.Partial("Image.cshtml", @Model.Images[0])
+                     @*<div id="gal1">
+                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
+                         <img id="img_01" src="@Url.Content("/Files/thumb/"+ Model.Image.Name)" />
+                         </a>
+
+                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
+                             <img id="img_01"  src="@Url.Content("/Files/thumb/"+ Model.Image.Name)" />
+                         </a>
+
+                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
+                             <img id="img_01"  src="@Url.Content("/Files/thumb/"+ Model.Image.Name)"  />
+                         </a>
+
+                     </div>*@
+                 </div>
+
+                 @*<div class="visual video large">
+                    <div class="bg-line">&nbsp;</div>
+                    <div class="videowrap"></div>
+                    <div class="zoomwrap">
                     </div>
-                    <div class="visual video large" style="display: block;">
-                        <div class="bg-line">&nbsp;</div>
-                        <div class="videowrap"></div>
-                        <div class="zoomwrap" style="display:block;">
-                        </div>
-                    </div>
-                    <div class="extimgs">
-                        <ul class="list">
-                            <li id="img_">
-                                <img src="" alt="" title="" />
-                            </li>
-                            <li id="img_0">
-                                <img src="" alt="" title="" />
-                            </li>
-                            <li id="img_1">
-                                <img src="" alt="" title="" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="___plusone_0"></div>
-                </div>
+                  </div>
+             <div class="extimgs">
+                 <ul class="list">
+                     <li id="img_">
+                         <img src="" alt="" title="" />
+                     </li>
+                     <li id="img_0">
+                         <img src="" alt="" title="" />
+                     </li>
+                     <li id="img_1">
+                         <img src="" alt="" title="" />
+                     </li>
+                 </ul>
+             </div>*@
+             <div id="___plusone_0"></div>
+         </div>
                 <div class="holder">
                     <form class="order-form" id="@Model.ProductID" asp-action="AddToCart"
                           asp-controller="Cart" method="post">
