@@ -53,6 +53,16 @@ namespace Store
                 app.UseAuthentication();
                 app.UseMvc(routes =>{
                     routes.MapRoute(
+                        name: "admin",
+                        template: "Admin/{action=Index}/{productId?}",
+                        defaults: new { controller = "Admin" }
+                    );
+                    routes.MapRoute(
+                        name: "account",
+                        template: "Account/{action=Login}",
+                        defaults: new { controller = "Account" }
+                    );
+                    routes.MapRoute(
                         name: "product",
                         template: "Product/{id}",
                         defaults: new { controller = "Product", action = "Product" }
@@ -64,7 +74,7 @@ namespace Store
                         );
                     routes.MapRoute(
                         name: "default",
-                        template: "{controller=Product}/{action=List}/{page=1}");
+                        template: "{controller=Product}/{action=List}/{page?}");
                 });
             //}
             SeedData.EnsurePopulated(app);
