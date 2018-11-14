@@ -8,13 +8,12 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Store.Models;
 using System;
 
-namespace Store.Migrations.AppIdentityDb
+namespace Store.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20180919140304_Initial")]
-    partial class Initial
+    partial class AppIdentityDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

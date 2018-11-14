@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace Store.Migrations.AppIdentityDb
+namespace Store.Migrations
 {
     public partial class Initial : Migration
     {

@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using Store.Models;
 using System;
 
-namespace Store.Migrations
+namespace Store.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180920210936_Image")]
-    partial class Image
+    [Migration("20181114111159_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,11 @@ namespace Store.Migrations
 
                     b.Property<string>("Path");
 
+                    b.Property<int?>("ProductID");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductID");
 
                     b.ToTable("FileModel");
                 });
@@ -101,16 +105,12 @@ namespace Store.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<int?>("ImageId");
-
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.Property<decimal>("Price");
 
                     b.HasKey("ProductID");
-
-                    b.HasIndex("ImageId");
 
                     b.ToTable("Products");
                 });
@@ -126,11 +126,11 @@ namespace Store.Migrations
                         .HasForeignKey("ProductID");
                 });
 
-            modelBuilder.Entity("Store.Models.Product", b =>
+            modelBuilder.Entity("Store.Models.FileModel", b =>
                 {
-                    b.HasOne("Store.Models.FileModel", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId");
+                    b.HasOne("Store.Models.Product")
+                        .WithMany("Images")
+                        .HasForeignKey("ProductID");
                 });
 #pragma warning restore 612, 618
         }

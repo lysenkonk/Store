@@ -8,7 +8,7 @@
         <div class="box">
             <div class="visual">
                 <a asp-action="Product" asp-controller="Product" asp-route-id="@Model.ProductID">
-                    @Html.Partial("Image.cshtml", @Model)
+                    @Html.Partial("Image.cshtml", @Model.Images)
                 </a>
             </div> 
             <div class="name">
