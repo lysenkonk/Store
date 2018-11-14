@@ -29,7 +29,7 @@
     </div>
     @foreach (FileModel image in Model.Images)
     {
-        <img class="imageAdmin" itemprop="image" src="@Url.Content("/Files/Sm/" + Model.Name)" alt="@Model.Name" title="@Model.Name">
+        <img class="imageAdmin" itemprop="image" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name">
 
         <a asp-action="RemoveImage" class="btn btn-sm btn-warning"
            asp-route-productId="@Model.ProductID" asp-route-imageName="@image.Name">

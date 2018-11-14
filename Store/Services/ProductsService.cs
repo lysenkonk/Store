@@ -16,7 +16,7 @@ namespace Store.Services
     public class ProductsService
     {
         private const string BigFilesFolder = "/Files/Bg/";
-        private const string SmallFilesFolder = "/Files/Sg/";
+        private const string SmallFilesFolder = "/Files/Sm/";
 
         private readonly IProductRepository _repository;
         private readonly IHostingEnvironment _appEnvironment;

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 using Microsoft.AspNetCore.Identity;
+using Store.Services;
 
 namespace Store
 {
@@ -39,6 +40,7 @@ namespace Store
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
+            services.AddTransient<ProductsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
