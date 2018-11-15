@@ -18,7 +18,7 @@
             </div>
             <div class="price">
                 <div class="bg">&nbsp;</div>
-                <table style="text-align:center; width:167px;">
+                <table>
                     <tr>
                         <td>
                             <div>@Model.Price.ToString()$</div>
@@ -31,7 +31,7 @@
                                     <input type="hidden" asp-for="ProductID" />
                                     <input type="hidden" name="returnUrl"
                                            value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                    <button type="submit"
+                                    <button type="submit" id="btnAddCart"
                                             class="btn btn-success btn-sm pull-right" style="float:right">
                                         Add to Cart
                                     </button>

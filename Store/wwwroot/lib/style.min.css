@@ -1189,19 +1189,62 @@ p {
         font: 24px "trebuchet ms", helvetica, sans-serif;
         margin: 0 0 14px;
     }
-
+.input-validation-error {
+    border-color: red;
+    background-color: #fee;
+}
+#rev {
+    border-top: 1px solid #E6E6E5;
+    width: 100%;
+}
+    #rev .div-head {
+        float: left;
+    }
+    #rev a {
+        text-indent: -9999;
+    }
+#review {
+    width: 400px;
+    float: right;
+}
+.price table {
+    text-align: center;
+    width: 167px;
+}
 .item-box .order-form {
     margin: 0;
 }
+#AddCart {
+    width: 260px;
+}
+#blocktab1 {
+    display: table;
+}
+#countReviews {
+    margin-left: 10px;
+    height: 29px;
+    line-height: 32px;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100px;
+    float: left;
+}
 
-    .item-box .order-form .button {
-        font-size: 19px;
-        height: 51px;
-        line-height: 51px;
-        padding: 0 20px 0 60px;
-        min-width: 150px;
-        width: auto;
-    }
+.item-box .order-form .button {
+    font-size: 19px;
+    height: 51px;
+    line-height: 51px;
+    padding: 0 20px 0 60px;
+    min-width: 150px;
+    width: auto;
+    float: left;
+}
+#promoNote {
+    display: none;
+    font-weight: bold;
+    color: #FF0000;
+    margin: 5px 0;
+}
 
 .order-form {
     overflow: hidden;
@@ -1423,6 +1466,9 @@ select {
             font-style: normal;
             background: url(../Files/design/dot01.gif) repeat-x 0 100%;
         }
+        #tab1:hover{
+            cursor: default;
+        }
 
         .order-form .tab li a:hover em {
             background: 0;
@@ -1432,11 +1478,11 @@ select {
             background: url(../Files/design/bg-tab01-l-h.gif) no-repeat;
         }
 
-            .order-form .tab li.active a span {
-                background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;
-                font-weight: bold;
-                color: #000;
-            }
+        .order-form .tab li.active a span {
+           background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;
+           font-weight: bold;
+           color: #000;
+         }
 
         .order-form .tab li.active em {
             background: 0;

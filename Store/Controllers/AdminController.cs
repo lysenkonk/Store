@@ -56,14 +56,14 @@ namespace Store.Controllers
         {
             await _productsService.RemoveImage(productId, imageName);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", productId);
         }
 
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
             await _productsService.AddImage(productId, uploadedFile);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", productId);
         }
 
         public ViewResult Create() => View("Edit", new Product());

@@ -28,44 +28,30 @@
              <div class="visual-block">
                  <div class="visual image large">
                      <div class="bg-line">&nbsp;</div>
-                         @Html.Partial("Image.cshtml", @Model.Images)
-                     @*<div id="gal1">
-                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
-                         <img id="img_01" src="@Url.Content("/Files/thumb/"+ Model.Image.Name)" />
-                         </a>
-
-                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
-                             <img id="img_01"  src="@Url.Content("/Files/thumb/"+ Model.Image.Name)" />
-                         </a>
-
-                         <a href="#" data-image="@Url.Content("/Files/Sm/"+ Model.Image.Name)" data-zoom-image="@Url.Content("/Files/Bg/"+ Model.Image.Name)">
-                             <img id="img_01"  src="@Url.Content("/Files/thumb/"+ Model.Image.Name)"  />
-                         </a>
-
-                     </div>*@
+                     @Html.Partial("Image.cshtml", @Model.Images)
                  </div>
-
-                 @*<div class="visual video large">
+                <div class="visual video large">
                     <div class="bg-line">&nbsp;</div>
                     <div class="videowrap"></div>
                     <div class="zoomwrap">
                     </div>
-                  </div>
-             <div class="extimgs">
-                 <ul class="list">
-                     <li id="img_">
-                         <img src="" alt="" title="" />
-                     </li>
-                     <li id="img_0">
-                         <img src="" alt="" title="" />
-                     </li>
-                     <li id="img_1">
-                         <img src="" alt="" title="" />
-                     </li>
-                 </ul>
-             </div>*@
-             <div id="___plusone_0"></div>
-         </div>
+                </div>
+                 <div class="extimgs">
+                     <ul class="list">
+                         @foreach (var image in Model.Images)
+                         {
+                             string id_img = "img_";
+                             <li id=@id_img>         
+                                 <img src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name" />
+                             </li>
+                             int count = 0;
+                             id_img +=  count;
+                             count++;
+                         }
+                     </ul>
+                 </div>
+                 <div id="___plusone_0"></div>
+             </div>
                 <div class="holder">
                     <form class="order-form" id="@Model.ProductID" asp-action="AddToCart"
                           asp-controller="Cart" method="post">
@@ -78,7 +64,7 @@
                             <div class="row">
                                 <ul class="tab">
                                     <li class="active">
-                                        <a id="tab1" href="#" onclick="return changeTab(this);">
+                                        <a id="tab1">
                                             <span>
                                                 <em>
                                                     Price
@@ -87,21 +73,21 @@
                                         </a>
                                     </li>
                                 </ul>
-                                <ul id="blocktab1" class="choice" style="display: table;">
+                                <ul id="blocktab1" class="choice">
                                     <li></li>
                                     <li>
                                         <strong>@Model.Price$</strong>
                                     </li>
                                 </ul>
                             </div>
-                            <div style="width:260px;">
-                                <button class="button" style="float: left;">
+                            <div id="AddCart">
+                                <button class="button">
                                     Add to Cart
                                 </button>
                                 <i class="clear"></i>
                             </div>
                             <div class="note">
-                                <div id="promoNote" style="display:none;font-weight:bold;color:#FF0000;margin:5px 0;"></div>
+                                <div id="promoNote"></div>
                                 <span id="regiondeliveryinfo">
                                     Доставка
                                     &nbsp;&#151;&nbsp;
@@ -129,19 +115,17 @@
                 </div>
                 <br style="clear:both;">
             </div>
-         <div style="border-top:1px solid #E6E6E5; width:100%;">
+            <div id="rev">
                 <div>
-                    <a name="reviews" style="text-indent:-9999;">&nbsp;</a>
-                    <p class="div-head" style="float:left;">Отзывы</p>
-                    <div style="margin-left:10px;height:29px;line-height:32px;font-size:16px;font-weight:bold;width:100px;float:left;">(0)</div>
-                    <div style="width:400px;float:right;">
-                    </div>
+                    <a name="reviews">&nbsp;</a>
+                    <p class="div-head">Отзывы</p>
+                    <div id="countReviews">(0)</div>
+                    <div id="review"></div>
                     <div class="clear"></div>
                 </div>
                 <div class="feedback withoutbg"> 
                     Для этого товара еще никто не оставлял отзывов
                 </div>
-
                 <a name="addNode"></a>
                 <div class="main-order-form">
                     <div class="button">
