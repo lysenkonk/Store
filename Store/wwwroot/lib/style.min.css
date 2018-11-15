@@ -2,7 +2,9 @@
 #gallery_01 img {
     border: 2px solid white;
 }
-
+.imgAdmin {
+    list-style: none;
+}
 /*Change the colour*/
 .active img {
     border: 2px solid #333 !important;
