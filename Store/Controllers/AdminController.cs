@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Store.Models;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using Microsoft.AspNetCore.Authorization;
-using System.IO;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
 using Store.Services;
 
 namespace Store.Controllers
@@ -19,22 +12,26 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private readonly ProductsService _productsService;
-        IHostingEnvironment _appEnvironment;
 
-        public AdminController(ProductsService service, IHostingEnvironment appEnvironment)
+        public AdminController(ProductsService service)
         {
             _productsService = service;
-            _appEnvironment = appEnvironment;
         }
+
         public ViewResult Index()
         {
             return View(_productsService.Products);
         }
-            
 
-        public ViewResult Edit(int productId) =>
-            View(_productsService.Products
-                .FirstOrDefault(p => p.ProductID == productId));
+        public IActionResult Edit(int productId)
+        {
+            var product = _productsService.Products.FirstOrDefault(p => p.ProductID == productId);
+
+            if (product == null)
+                return NotFound();
+
+            return View(product);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(Product product)
@@ -56,14 +53,14 @@ namespace Store.Controllers
         {
             await _productsService.RemoveImage(productId, imageName);
 
-            return RedirectToAction("Edit", productId);
+            return RedirectToAction("Edit", new { productId });
         }
 
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
             await _productsService.AddImage(productId, uploadedFile);
 
-            return RedirectToAction("Edit", productId);
+            return RedirectToAction("Edit", new { productId });
         }
 
         public ViewResult Create() => View("Edit", new Product());
@@ -78,7 +75,5 @@ namespace Store.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        
     }
 }
