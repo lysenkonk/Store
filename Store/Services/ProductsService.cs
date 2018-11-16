@@ -76,6 +76,7 @@ namespace Store.Services
         public async Task RemoveImage(int productId, string imageName)
         {
             await _repository.RemoveImageAsync(productId, imageName);
+            RemoveImageFiles(imageName);
         }
 
         private static Bitmap ResizeImage(Stream stream, int width, int height)
@@ -100,8 +101,8 @@ namespace Store.Services
             else
                 throw new Exception("404 Not Found File"); // TODO make proper hadling
 
-            if (File.Exists(_appEnvironment.WebRootPath + BigFilesFolder + imageName))
-                File.Delete(_appEnvironment.WebRootPath + BigFilesFolder + imageName);
+            if (File.Exists(_appEnvironment.WebRootPath + SmallFilesFolder + imageName))
+                File.Delete(_appEnvironment.WebRootPath + SmallFilesFolder + imageName);
             else
                 throw new Exception("404 Not Found File"); // TODO make proper hadling
         }
