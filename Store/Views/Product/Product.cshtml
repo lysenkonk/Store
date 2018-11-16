@@ -28,7 +28,9 @@
             <div class="visual-block">
                 <div class="visual image large">
                     <div class="bg-line">&nbsp;</div>
-                    @Html.Partial("Image.cshtml", @Model.Images)
+
+                        @Html.Partial("Image.cshtml", @Model.Images)
+
                 </div>
                 <div class="visual video large">
                     <div class="bg-line">&nbsp;</div>
@@ -40,13 +42,9 @@
                     <ul class="list">
                         @foreach (var image in Model.Images)
                         {
-                            string id_img = "img_";
-                            <li id=@id_img>
-                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name"/>
+                            <li>
+                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name" />
                             </li>
-                            int count = 0;
-                            id_img += count;
-                            count++;
                         }
                     </ul>
                 </div>
@@ -89,9 +87,9 @@
                         <div class="note">
                             <div id="promoNote"></div>
                             <span id="regiondeliveryinfo">
-                                Доставка
+                                Send products
                                 &nbsp;&#151;&nbsp;
-                                <strong>бесплатно</strong>
+                                <strong>free</strong>
                             </span>
                         </div>
                     </fieldset>
@@ -107,7 +105,7 @@
                     </div>
                     <div>
                         <p>
-                            Ближайшее время доставки сегодня с 18:00, при оплате заказа до 18:00.
+                            Nearest delivery time for today from 18:00.
                         </p>
                         <i style="clear:both;"></i>
                     </div>
@@ -140,23 +138,3 @@
         <div class="set-proposals"></div>
     </div>
 </div>
-<script>
-    $(function () {
-
-        let smImages = document.getElementsByClassName(sm_img);
-        smImages.forEach(element => element.addEventListener("click", tabbedImage(e), false));
-        
-        function tabbedImage(e) {
-
-            let imgTitle = e.target.getAttribute("title");
-            let imgName = imgSrc.slice(0, img.indexOf("."));
-            let imgSrc = "/Files/Bg/" + imgName;
-            displayedImage.setAttribute('src', imgSrc);
-        //    var expandImg = document.getElementById("#img_Bg");
-        //    expandImg.alt = imgName;
-        //}
-    })
-
-
-
-</script>
