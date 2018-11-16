@@ -71,7 +71,7 @@ namespace Store
                         );
                     routes.MapRoute(
                         name: "category",
-                        template: "{category}/{page=1}",
+                        template: "{category}/{page}",
                         defaults: new { controller = "Product", action = "List"}
                         );
                     routes.MapRoute(
