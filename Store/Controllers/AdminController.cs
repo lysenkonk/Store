@@ -41,7 +41,7 @@ namespace Store.Controllers
             {
                 await _productsService.SaveProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
-                return RedirectToAction("Index");
+                return View(product);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Store.Controllers
 
         public ViewResult Create() => View("Edit", new Product());
 
-        [HttpPost]
+        
         public async Task<IActionResult> Delete(int productId)
         {
             Product deletedProduct =  await _productsService.DeleteProductAsync(productId);

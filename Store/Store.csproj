@@ -17,4 +17,9 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Files\Bg\" />
+    <Folder Include="wwwroot\Files\Sm\" />
+  </ItemGroup>
+
 </Project>
