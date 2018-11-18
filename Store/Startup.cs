@@ -65,15 +65,22 @@ namespace Store
                         defaults: new { controller = "Account" }
                     );
                     routes.MapRoute(
+                        name: "category",
+                        template: "{category}/{page}",
+                        defaults: new { controller = "Product", action = "List" }
+                        );
+                    routes.MapRoute(
+                        name: "products",
+                        template: "Products/{page}",
+                       defaults: new { controller = "Product", action = "List" }
+
+                    );
+                    routes.MapRoute(
                         name: "product",
                         template: "Product/{id}",
                         defaults: new { controller = "Product", action = "Product" }
                         );
-                    routes.MapRoute(
-                        name: "category",
-                        template: "{category}/{page}",
-                        defaults: new { controller = "Product", action = "List"}
-                        );
+
                     routes.MapRoute(
                         name: "default",
                         template: "{controller=Product}/{action=List}/{page?}");
