@@ -16,30 +16,9 @@
                 @Model.Name
                 </a>
             </div>
-            <div class="price">
+            <div class="price container text-center">
                 <div class="bg">&nbsp;</div>
-                <table>
-                    <tr>
-                        <td>
-                            <div>@Model.Price.ToString()$</div>
-                            <br />
-                        </td>
-                        <td>
-                            @*<div class="btnCart">
-                                <form id="@Model.ProductID" asp-action="AddToCart"
-                                      asp-controller="Cart" method="post">
-                                    <input type="hidden" asp-for="ProductID" />
-                                    <input type="hidden" name="returnUrl"
-                                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
-                                    <button type="submit" id="btnAddCart"
-                                            class="btn btn-success btn-sm pull-right" style="float:right">
-                                        Add to Cart
-                                    </button>
-                                </form>
-                            </div>*@
-                        </td>
-                    </tr>
-                </table>
+                <div>@Model.Price.ToString()$</div>
             </div>
         </div>
      </div>

@@ -163,15 +163,6 @@ a {
         text-decoration: none;
     }
 
-input,
-textarea,
-select {
-    font: 100% Arial, Helvetica, sans-serif;
-    vertical-align: middle;
-    outline: 0;
-    resize: none;
-}
-
 form,
 fieldset {
     margin: 0;
@@ -2683,44 +2674,11 @@ select {
     }
 
     .set-proposals .list .price div {
-        display: block;
         color: #9a3;
         font-weight: bold;
         font-size: 15px;
-        margin: 5px 2px 0px 50px;
-        width: 50px;
     }
 
-        .set-proposals .list .price div.old {
-            display: block;
-            color: #d55429;
-            font-weight: normal;
-            text-decoration: line-through;
-            font-size: 13px;
-            margin: 0;
-            width: 50px;
-        }
-        .btnCart {
-            float: right;
-            height: 27px;
-            width: 85px;
-            padding-bottom: 60px;
-        }
-div.old {
-    display: block;
-    color: #d55429;
-    font-weight: normal;
-    text-decoration: line-through;
-    font-size: 13px;
-    margin: 2px 2px 0 0;
-    width: 100px;
-    clear: both;
-    line-height: 80%;
-}
-
-    div.old.wfull {
-        width: 100%;
-    }
 
 .set-proposals .list .zoom {
     display: inline-block;
