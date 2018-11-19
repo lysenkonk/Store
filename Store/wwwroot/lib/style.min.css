@@ -1067,14 +1067,11 @@ p {
             margin: 0 0 10px;
         }
 
-        .item-box .info .visual-block .image {
-            width: 350px;
-            height: 350px;
-        }
+        
 
             .item-box .info .visual-block .image.large {
-                width: 430px;
-                height: 430px;
+                max-width: 430px;
+                max-height: 430px;
             }
 
             .item-box .info .visual-block .image .zoom-in {
