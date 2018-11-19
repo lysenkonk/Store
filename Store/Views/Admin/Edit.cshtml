@@ -1,4 +1,4 @@
-﻿@model Product
+﻿@model AdminProductViewModel
 
 @{
     ViewBag.Title = "Edit Product";
@@ -29,33 +29,34 @@
 
 <div class="container">
     <form asp-action="Edit" method="post" enctype="multipart/form-data">
-        <input type="hidden" asp-for="ProductID" />
+        <input type="hidden" asp-for="@Model.Product.ProductID" />
         <div class="form-group row">
-            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+            <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <div> <span asp-validation-for="Name" class="text-danger"></span></div>
-                <input asp-for="Name" class="form-control" />
+                <div> <span asp-validation-for="@Model.Product.Name" class="text-danger"></span></div>
+                <input asp-for="@Model.Product.Name" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+            <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <div> <span asp-validation-for="Description" class="text-danger"></span></div>
-                <textarea asp-for="Description" rows="5" class="form-control vresize"> </textarea>
+                <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
+                <textarea asp-for="@Model.Product.Description" rows="5" class="form-control vresize"> </textarea>
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="Category" class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-10">
-                <div> <span asp-validation-for="Category" class="text-danger"></span></div>
-                <input asp-for="Category" class="form-control" />
+            <label asp-for="@Model.Product.Category"></label>
+            <select asp-for="@Model.Product.Category" asp-items="@(new SelectList(Model.Categories, Model.Product.Category, "Enter Category"))"></select>
+           <div class="col-sm-10">
+                <div> <span asp-validation-for="@Model.Product.Category" class="text-danger"></span></div>
+                <input asp-for="@Model.Product.Category" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+            <label asp-for="@Model.Product.Price" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <span asp-validation-for="Price" class="text-danger"></span>
-                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
+                <input asp-for="@Model.Product.Price" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
@@ -69,7 +70,7 @@
 
 <div class="container">
     <div class="row">
-        @foreach (FileModel image in Model.Images)
+        @foreach (FileModel image in @Model.Product.Images)
         {
             <div class="col-md-3">
                 <div class="thumbnail container text-center">
@@ -80,7 +81,7 @@
                     </div>
                     <div>
                         <a asp-action="RemoveImage" class="btn btn-sm btn-warning"
-                           asp-route-productId="@Model.ProductID" asp-route-imageName="@image.Name">
+                           asp-route-productId="@Model.Product.ProductID" asp-route-imageName="@image.Name">
                             Delete
                         </a>
                     </div>
@@ -89,7 +90,7 @@
         }
         <div class="col-md-3 align-self-center">
             
-                <form id="form" asp-action="AddImage" asp-route-productId="@Model.ProductID" method="post" enctype="multipart/form-data">
+                <form id="form" asp-action="AddImage" asp-route-productId="@Model.Product.ProductID" method="post" enctype="multipart/form-data">
                     <div class="upload-button">
                         <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
                         <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');"/>
