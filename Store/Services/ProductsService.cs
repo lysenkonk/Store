@@ -40,8 +40,8 @@ namespace Store.Services
 
             if (product == null)
                 throw new Exception("404 Not Found Product"); // TODO make proper hadling
-
-            foreach(var image in product.Images)
+            List<FileModel> images = new List<FileModel>(product.Images);
+            foreach (var image in images)
             {
                 RemoveImageFiles(image.Name);
                 await _repository.RemoveImageAsync(product.ProductID, image.Name);
@@ -99,12 +99,12 @@ namespace Store.Services
             if (File.Exists(_appEnvironment.WebRootPath + BigFilesFolder + imageName))
                 File.Delete(_appEnvironment.WebRootPath + BigFilesFolder + imageName);
             else
-                throw new Exception("404 Not Found File"); // TODO make proper hadling
+                return; // TODO make proper hadling
 
             if (File.Exists(_appEnvironment.WebRootPath + SmallFilesFolder + imageName))
                 File.Delete(_appEnvironment.WebRootPath + SmallFilesFolder + imageName);
             else
-                throw new Exception("404 Not Found File"); // TODO make proper hadling
+                return; // TODO make proper hadling
         }
     }
 }
