@@ -11,7 +11,7 @@ namespace Store.Controllers
     public class ProductController : Controller
     {
         private IProductRepository repository;
-        public int PageSize = 8;
+        public int PageSize = 20;
 
         public ProductController(IProductRepository repo)
         {
