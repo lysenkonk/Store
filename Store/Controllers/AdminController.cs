@@ -5,6 +5,7 @@ using Store.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Store.Services;
+using Store.Models.ViewModels;
 
 namespace Store.Controllers
 {
@@ -30,7 +31,16 @@ namespace Store.Controllers
             if (product == null)
                 return NotFound();
 
-            return View(product);
+            var viewModel = new AdminProductViewModel
+            {
+                Product = product,
+                Categories = _productsService.Products
+                .Select(x => x.Category)
+                .Distinct()
+                .OrderBy(x => x)
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -63,7 +73,18 @@ namespace Store.Controllers
             return RedirectToAction("Edit", new { productId });
         }
 
-        public ViewResult Create() => View("Edit", new Product());
+        public IActionResult Create()
+        {
+            var viewModel = new AdminProductViewModel
+            {
+                Product = new Product(),
+                Categories = _productsService.Products
+                .Select(x => x.Category)
+                .Distinct()
+                .OrderBy(x => x)
+            };
+            return View("Edit");
+        }
 
         
         public async Task<IActionResult> Delete(int productId)
