@@ -88,7 +88,7 @@ namespace Store.Controllers
                 .Distinct()
                 .OrderBy(x => x)
             };
-            return View("Edit");
+            return View("Edit", viewModel);
         }
 
         

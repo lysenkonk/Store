@@ -55,6 +55,16 @@ namespace Store
                 app.UseAuthentication();
                 app.UseMvc(routes =>{
                     routes.MapRoute(
+                        name: "delivery",
+                        template: "Delivery",
+                        defaults: new { controller = "StaticViews", action = "Delivery" }
+                    );
+                    routes.MapRoute(
+                        name: "about",
+                        template: "About",
+                        defaults: new { controller = "StaticViews", action = "About" }
+                    );
+                    routes.MapRoute(
                         name: "admin",
                         template: "Admin/{action=Index}/{productId?}",
                         defaults: new { controller = "Admin" }
