@@ -35,35 +35,34 @@
 </style>
 
 <div class="container">
-    <form asp-action="Edit" method="post" enctype="multipart/form-data">
-        <input type="hidden" asp-for="@Model.Product.ProductID" />
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Product.ProductID" />
         <div class="form-group row">
             <label asp-for="@Model.Product.Name" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <div> <span asp-validation-for="@Model.Product.Name" class="text-danger"></span></div>
-                <input asp-for="@Model.Product.Name" class="form-control" />
+                <input asp-for="Product.Name" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Description" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
-                <textarea asp-for="@Model.Product.Description" rows="5" class="form-control vresize"> </textarea>
+                <textarea asp-for="Product.Description" rows="5" class="form-control vresize"> </textarea>
             </div>
         </div>
         <div class="form-group row">
-            <label asp-for="@Model.Product.Category"></label>
-            <select asp-for="@Model.Product.Category" asp-items="@(new SelectList(Model.Categories, Model.Product.Category, "Enter Category"))"></select>
+            <label asp-for="@Model.Product.Category" class="col-sm-2 col-form-label"></label>
            <div class="col-sm-10">
                 <div> <span asp-validation-for="@Model.Product.Category" class="text-danger"></span></div>
-                <input asp-for="@Model.Product.Category" class="form-control" />
+                <input asp-for="Product.Category" class="form-control" />
             </div>
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Price" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
                 <span asp-validation-for="@Model.Product.Price" class="text-danger"></span>
-                <input asp-for="@Model.Product.Price" class="form-control" />
+                <input asp-for="Product.Price" class="form-control" />
             </div>
         </div>
         <div class="form-group row">

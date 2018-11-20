@@ -51,12 +51,17 @@ namespace Store.Controllers
             {
                 await _productsService.SaveProductAsync(product);
                 TempData["message"] = $"{product.Name} has been saved";
-                return View(product);
             }
-            else
+
+            var viewModel = new AdminProductViewModel
             {
-                return View(product);
-            }
+                Product = product,
+                Categories = _productsService.Products
+                .Select(x => x.Category)
+                .Distinct()
+                .OrderBy(x => x)
+            };
+            return View(viewModel);
         }
 
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
