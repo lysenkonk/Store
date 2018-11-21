@@ -13,5 +13,11 @@ namespace Store.Controllers
         {
             return View("~/Views/Static/Delivery.cshtml");
         }
+
+        public ViewResult Feedback()
+        {
+            return View("~/Views/Static/Feedback.cshtml");
+        }
+
     }
 }

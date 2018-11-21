@@ -60,6 +60,11 @@ namespace Store
                         defaults: new { controller = "StaticViews", action = "Delivery" }
                     );
                     routes.MapRoute(
+                        name: "feedback",
+                        template: "Feedback",
+                        defaults: new { controller = "StaticViews", action = "Feedback" }
+                    );                 
+                    routes.MapRoute(
                         name: "about",
                         template: "About",
                         defaults: new { controller = "StaticViews", action = "About" }
