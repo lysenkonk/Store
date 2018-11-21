@@ -449,6 +449,9 @@ p {
     padding: 0 0 0 6px;
     text-align: center;
 }
+.staticPage .infoBox {
+    padding-left: 60px;
+}
     /*.tel-box .tel-wrap .tel {
         margin: 2px 5px;
         clear: both;
