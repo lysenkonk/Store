@@ -266,6 +266,8 @@ p {
     z-index: 50;
 }
 
+
+
 /*.container {
     width: 100%;
     margin-right: 0px;
@@ -431,14 +433,28 @@ p {
     margin: 5px 5px -1px;
     width: 200px;
     height: 90px;
+    padding-top: 7px;
 }
-
-    .tel-box .tel-wrap .tel {
+.tel-wrap .infoBox {
+    padding-top: 7px;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    padding-left: 15px;
+}
+.tel-box .email {
+    font: bold 12px/30px tahoma, geneva, sans-serif;
+    color: #394c16;
+    padding: 0 0 0 6px;
+    text-align: center;
+}
+    /*.tel-box .tel-wrap .tel {
         margin: 2px 5px;
         clear: both;
         overflow: hidden;
         position: relative;
-    }
+    }*/
 
 .tel-box .tel div {
     padding: 0 0 5px 6px;
@@ -448,12 +464,7 @@ p {
     margin: 0 3px 0 0;
 }
 
-.tel-box .time {
-    font: bold 12px/30px tahoma, geneva, sans-serif;
-    color: #394c16;
-    padding: 0 0 0 6px;
-    text-align: center;
-}
+
 
 #nav {
     margin: 0;
