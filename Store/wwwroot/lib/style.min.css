@@ -1382,6 +1382,8 @@ select {
 
 .order-form .row {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     height: 1%;
     margin: 0 0 9px;
 }
