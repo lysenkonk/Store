@@ -1,4 +1,4 @@
-﻿require('./lib');
+﻿
 $(function () {
     var bgImg = document.getElementById("#img_Bg");
     let smImages = document.getElementsByClassName("sm_img");
