@@ -672,86 +672,178 @@ p {
     overflow: hidden
 }
 
-.order-form {
+.order-form .row {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
     height: 1%;
-    margin: 0 0 15px
+    margin: 0 0 9px;
 }
-    .order-form .row {
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: 1%;
-        margin: 0 0 9px;
+
+    .order-form .row label {
+        float: left;
+        margin: 1px 8px 0 0;
     }
 
-        .order-form .row label {
+.order-form .row2 {
+    height: 1%;
+    overflow: hidden;
+    margin: 0 0 17px;
+}
+
+    .order-form .row2 strong {
+        float: left;
+        margin: 0 9px 0 0;
+    }
+
+    .order-form .row2 .opener,
+    .choice-delivery .opener,
+    .item-box .info .container2 .opener {
+        float: left;
+        font-size: 16px;
+        padding: 0 11px 0 0;
+        text-decoration: none;
+    }
+
+        .order-form .row2 .opener span,
+        .choice-delivery .opener span,
+        .item-box .info .container2 .opener span {
             float: left;
-            margin: 1px 8px 0 0;
-        } 
+            font-weight: bold;
+            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
+        }
 
-    .order-form .row2 {
-        height: 1%;
-        overflow: hidden;
-        margin: 0 0 17px
+        .order-form .row2 .opener:hover span,
+        .choice-delivery .opener:hover span {
+            background: 0;
+        }
+
+    .order-form .row2 .link,
+    .choice-delivery .link {
+        font-size: 13px;
+        padding: 4px 0 0 0;
     }
 
-        .order-form .row2 strong {
+    .order-form .row2 .link {
+        padding: 0;
+    }
+
+    .order-form .row2 .reg-bkt {
+        padding: 0;
+    }
+
+    .order-form .row2 .link span,
+    .choice-delivery .link span {
+        font-weight: normal;
+    }
+
+.order-form .tab {
+    margin: 0;
+    padding: 3px 0 0 8px;
+    list-style: none;
+    background: url(../Files/design/bg-tab01.gif) no-repeat;
+    width: 400px;
+    overflow: hidden;
+}
+
+    .order-form .tab li {
+        float: left;
+    }
+
+        .order-form .tab li a {
             float: left;
-            margin: 0 9px 0 0
+            background: url(../Files/design/bg-tab01-l.gif) no-repeat;
+            text-decoration: none;
         }
 
-        .order-form .row2 .link {
-            font-size: 13px;
-            padding: 4px 0 0 0
+        .order-form .tab li span {
+            float: left;
+            background: url(../Files/design/bg-tab01-r.gif) no-repeat 100% 0;
+            height: 27px;
+            padding: 11px 12px 0;
         }
 
-        .order-form .row2 .link {
-            padding: 0
+        .order-form .tab li em {
+            float: left;
+            font-style: normal;
+            background: url(../Files/design/dot01.gif) repeat-x 0 100%;
         }
-
-            .order-form .row2 .link span {
-                font-weight: 400
-            }
-
-    .order-form .tab {
-        margin: 0;
-        padding: 3px 0 0 8px;
-        list-style: none;
-        background: url(../Files/design/bg-tab01.gif) no-repeat;
-        width: 400px;
-        overflow: hidden
-    }
-
-        .order-form .tab li {
-            float: left
-        }
-
-            .order-form .tab li a {
-                float: left;
-                background: url(../Files/design/bg-tab01-l.gif) no-repeat;
-                text-decoration: none
-            }
-
-            .order-form .tab li span {
-                float: left;
-                background: url(../Files/design/bg-tab01-r.gif) no-repeat 100% 0;
-                height: 27px;
-                padding: 11px 12px 0
-            }
-
-            .order-form .tab li em {
-                float: left;
-                font-style: normal;
-                background: url(../Files/design/dot01.gif) repeat-x 0 100%
-            }
 
 #tab1:hover {
-    cursor: default
+    cursor: default;
 }
 
 .order-form .tab li a:hover em {
-    background: 0
+    background: 0;
+}
+
+.order-form .tab li.active a {
+    background: url(../Files/design/bg-tab01-l-h.gif) no-repeat;
+}
+
+    .order-form .tab li.active a span {
+        background: url(../Files/design/bg-tab01-r-h.gif) no-repeat 100% 0;
+        font-weight: bold;
+        color: #000;
+    }
+
+.order-form .tab li.active em {
+    background: 0;
+}
+
+.order-form .choice {
+    margin: 0;
+    padding: 10px 0 14px;
+    list-style: none;
+    border: solid 1px #e2e4dc;
+    border-width: 0 1px 1px 1px;
+    width: 390px;
+}
+
+    .order-form .choice li {
+        overflow: hidden;
+        height: 1%;
+        padding: 0 0 7px 20px;
+    }
+
+        .order-form .choice li.dynamicProduct {
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+    .order-form .choice .radio {
+        float: left;
+        width: 15px;
+        height: 15px;
+        margin: 5px 1px 0 0;
+        padding: 0;
+    }
+
+    .order-form .choice label {
+        float: left;
+        margin: 5px 0 0;
+        width: 69px;
+    }
+
+    .order-form .choice strong {
+        float: left;
+        color: #9a3;
+        font-size: 18px;
+        margin: 4px 0 0 0;
+    }
+
+.order-form .note {
+    overflow: hidden;
+    height: 1%;
+    padding: 8px 0 18px;
+}
+
+    .order-form .note span {
+        margin: 0 3px 0 0;
+    }
+
+#tab1:hover {
+    cursor: default
 }
 
 .order-form .button {
