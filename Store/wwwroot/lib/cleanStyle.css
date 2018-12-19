@@ -677,17 +677,18 @@ p {
     height: 1%;
     margin: 0 0 15px
 }
-
     .order-form .row {
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
         height: 1%;
-        margin: 0 0 9px
+        margin: 0 0 9px;
     }
 
         .order-form .row label {
             float: left;
-            margin: 1px 8px 0 0
-        }
+            margin: 1px 8px 0 0;
+        } 
 
     .order-form .row2 {
         height: 1%;
