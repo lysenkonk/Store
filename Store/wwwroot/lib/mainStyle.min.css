@@ -1,4 +1,25 @@
-﻿.modal {
+﻿[class*="col-"] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid rgba(86, 61, 124, .2);
+}
+
+.upload-button {
+    text-align: center;
+    position: relative;
+}
+
+    .upload-button .label {
+        pointer-events: none;
+        position: absolute;
+    }
+
+    .upload-button input {
+        opacity: 0;
+        cursor: pointer;
+    }
+.modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 80; /* Sit on top */
