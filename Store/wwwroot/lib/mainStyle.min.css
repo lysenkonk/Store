@@ -166,3 +166,8 @@
         float: left;
         margin: 12px 0 0 -320px;
     }
+
+.container
+{
+    text-align: center;
+}
