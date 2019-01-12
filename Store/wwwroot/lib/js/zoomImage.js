@@ -1,4 +1,5 @@
-﻿$(function () {
+﻿
+$(function () {
     var bgImg = document.getElementById("#img_Bg");
     let smImages = document.getElementsByClassName("sm_img");
     //smImages.forEach(function (element) { element.addEventListener("click", tabbedImage(e), false) });

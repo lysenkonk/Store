@@ -5,35 +5,6 @@
     Layout = "_AdminLayout";
 }
 
-
-<style>
-    [class*="col-"] {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        background-color: rgba(86, 61, 124, .15);
-        border: 1px solid rgba(86, 61, 124, .2);
-    }
-
-    .upload-button {
-        
-        text-align: center;
-        position: relative;
-        
-    }
-
-        .upload-button .label {
-            pointer-events: none;
-            position: absolute;
-            
-        }
-
-    .upload-button input {
-        opacity: 0;
-        cursor: pointer;
-        
-    }
-</style>
-
 <div class="container">
     <form asp-action="Edit" method="post">
         <input type="hidden" asp-for="Product.ProductID" />
@@ -49,13 +20,17 @@
             <div class="col-sm-10">
                 <div> <span asp-validation-for="@Model.Product.Description" class="text-danger"></span></div>
                 <textarea asp-for="Product.Description" rows="5" class="form-control vresize"> </textarea>
+
             </div>
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Category" class="col-sm-2 col-form-label"></label>
            <div class="col-sm-10">
-                <div> <span asp-validation-for="@Model.Product.Category" class="text-danger"></span></div>
-                <input asp-for="Product.Category" class="form-control" />
+               <select id="editable-select" asp-for="@Model.Product.Category" class="form-control" asp-items="@(new SelectList(Model.Categories, "category"))">
+                   <option value="@Model.Product.Category">
+                   </option>
+                    </select>
+                <span asp-validation-for="@Model.Product.Category" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group row">
@@ -109,9 +84,6 @@
 
 
 
-
-
-
     <div>
         <a asp-action="Index">Back to List</a>
     </div>
@@ -120,4 +92,6 @@
     function submitForm(formId) {
         document.getElementById(formId).submit();
     }
+
+    $('#editable-select').editableSelect();
 </script>

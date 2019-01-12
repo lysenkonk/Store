@@ -1,8 +1,25 @@
 {
+  "name": "Store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wbp": "webpack wwwroot/lib/js/navigation.js wwwroot/dist/bundle.js --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
+  },
   "dependencies": {
     "bootstrap": "4.0.0",
     "jquery": "3.3.1",
+    "jquery-editable-select": "^2.2.5",
     "jquery-validation": "1.18.0",
-    "jquery-validation-unobtrusive": "3.2.10"
+    "jquery-validation-unobtrusive": "3.2.10",
+    "popper.js": "^1.14.6"
   }
 }
