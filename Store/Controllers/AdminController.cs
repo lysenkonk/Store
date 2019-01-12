@@ -21,7 +21,7 @@ namespace Store.Controllers
 
         public ViewResult Index()
         {
-            return View(_productsService.Products);
+            return View("Products", _productsService.Products);
         }
 
         public IActionResult Edit(int productId)

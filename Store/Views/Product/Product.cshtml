@@ -13,7 +13,7 @@
                 <div class="visual image large">
                     <div class="bg-line">&nbsp;</div>
 
-                        @Html.Partial("Image.cshtml", @Model.Images)
+                        @Html.Partial("Image.cshtml", @Model)
 
                 </div>
                 <div class="visual video large">
@@ -27,7 +27,7 @@
                         @foreach (var image in Model.Images)
                         {
                             <li>
-                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@image.Name" title="@image.Name" />
+                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@Model.Name" title="@Model.Name" />
                             </li>
                         }
                     </ul>

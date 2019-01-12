@@ -203,7 +203,8 @@ p {
 
 #headeri {
     padding: 0 24px;
-    height: 251px
+    height: 251px;
+    text-align: center;
 }
 
     #headeri:after {
@@ -465,11 +466,10 @@ p {
     background-color: #fee;
 }
 #nav {
-    margin: 0;
-    padding: 16px 0 0 236px;
+    padding: 16px 0 0 0px;
     list-style: none;
     overflow: hidden;
-    min-width: 900px
+    display: inline-block;
 }
 
     #nav li {
