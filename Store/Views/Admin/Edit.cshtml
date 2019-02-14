@@ -25,11 +25,10 @@
         </div>
         <div class="form-group row">
             <label asp-for="@Model.Product.Category" class="col-sm-2 col-form-label"></label>
-           <div class="col-sm-10">
-               <select id="editable-select" asp-for="@Model.Product.Category" class="form-control" asp-items="@(new SelectList(Model.Categories, "category"))">
-                   <option value="@Model.Product.Category">
-                   </option>
-                    </select>
+            <div class="col-sm-10">
+                <select id="editable-select" asp-for="@Model.Product.Category" class="form-control" asp-items="@(new SelectList(Model.Categories, "category"))">
+                    <option value="@Model.Product.Category"></option>
+                </select>
                 <span asp-validation-for="@Model.Product.Category" class="text-danger"></span>
             </div>
         </div>
@@ -40,10 +39,13 @@
                 <input asp-for="Product.Price" class="form-control" />
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-sm-10 ml-auto">
                 <button class="btn btn-primary" type="submit">Save</button>
+                <a asp-action="Create" class="btn btn-warning">Clean</a>
                 <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
             </div>
         </div>
     </form>
@@ -81,11 +83,8 @@
         </div>
     </div>
 </div>
-
-
-
-    <div>
-        <a asp-action="Index">Back to List</a>
+    <div class="text-center">
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
     </div>
 
 <script>
