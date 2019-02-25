@@ -66,6 +66,11 @@ namespace Store.Controllers
 
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {
+            if(!isProduct(productId))
+            {
+                return RedirectToAction("Create");
+            }
+
             await _productsService.RemoveImage(productId, imageName);
 
             return RedirectToAction("Edit", new { productId });
@@ -73,6 +78,11 @@ namespace Store.Controllers
 
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
+            if(!isProduct(productId))
+            {
+                return RedirectToAction("Create");
+            }
+
             await _productsService.AddImage(productId, uploadedFile);
 
             return RedirectToAction("Edit", new { productId });
@@ -100,6 +110,17 @@ namespace Store.Controllers
                 TempData["message"] = $"{deletedProduct.Name} was deleted";
             }
             return RedirectToAction("Index");
+        }
+
+        private bool isProduct(int productId)
+        {
+            var product = _productsService.Products.FirstOrDefault(p => p.ProductID == productId);
+            if (product == null)
+            {
+                TempData["message"] = $"That product doesn't exist";
+                return false;
+            }
+            return true;
         }
     }
 }
