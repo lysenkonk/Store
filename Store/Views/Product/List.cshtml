@@ -1,11 +1,12 @@
 ﻿@using Store.Models
-@model ProductsListViewModel
+@model ProductsViewModel
+@addTagHelper "*, Store"
 
 
 <div class="set-proposals">
     <div class="head">
         <div class="holder article">
-            <h1>@Model.CurrentCategory</h1>
+            <h1>@Model.FilterViewModel.SelectedCategory</h1>
         </div>
         <div class="sorting">
             <strong>Sort:</strong>
@@ -13,14 +14,14 @@
                 <li>
                     <a asp-action="List"
                        asp-route-sortOrder="@(Store.Models.SortState.PriceAsc)"
-                       asp-route-category="@(Model.CurrentCategory)">
+                       asp-route-category="@(Model.FilterViewModel.SelectedCategory)">
                         <span>low price</span>
                     </a>
                 </li>
                 <li>
                     <a asp-action="List"
                        asp-route-sortOrder="@(Store.Models.SortState.PriceDesc)"
-                       asp-route-category="@(Model.CurrentCategory)">
+                       asp-route-category="@(Model.FilterViewModel.SelectedCategory)">
                         <span>high price</span>
                     </a>
                 </li>
@@ -35,9 +36,10 @@
         }
     </ul>
 
-    <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true"
+    <div page-model="@Model.PageInfo" page-action="List" page-classes-enabled="true"
          page-class="btn" page-class-normal="btn-secondary"
-         page-class-selected="btn-primary" page-url-category="@Model.CurrentCategory"
+         page-class-selected="btn-primary" page-url-category="@Model.FilterViewModel.SelectedCategory"
+         page-url-sortOrder="@Model.SortViewModel.Current"
          class="pagination justify-content-center">
     </div>
 </div>

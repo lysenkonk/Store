@@ -95,6 +95,16 @@ namespace Store
                         template: "{category}/{page}",
                         defaults: new { controller = "Product", action = "List" }
                         );
+                    //routes.MapRoute(
+                    //    name: "category",
+                    //    template: "{category}/{page}/{sortOrder}",
+                    //    defaults: new { controller = "Product", action = "List" }
+                    //    );
+                    //routes.MapRoute(
+                    //   name: "sort",  
+                    //   template: "{category}/{page}/{sortOrder}",
+                    //   defaults: new { controller = "Product", action = "List" }
+                    //   );
                     routes.MapRoute(
                         name: "default",
                         template: "{controller=Product}/{action=List}/{page?}");

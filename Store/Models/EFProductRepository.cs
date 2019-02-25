@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,10 @@ namespace Store.Models
             _context = ctx;
         }
         public IQueryable<Product> Products => _context.Products.Include(p => p.Images);
+
+        public IEnumerable<string> Categories => _context.Products.Select(x => x.Category)
+                                                                  .Distinct()
+                                                                  .OrderBy(x => x);
 
         public async Task<Product> SaveProductAsync(Product product)
         {

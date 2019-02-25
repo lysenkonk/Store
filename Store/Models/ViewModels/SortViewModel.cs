@@ -15,3 +15,4 @@ namespace Store.Models.ViewModels
         }
     }
 }
+ 

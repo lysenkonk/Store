@@ -25,7 +25,7 @@ namespace Store.Infrastructure
         [HtmlAttributeNotBound]
         public ViewContext ViewContext { get; set; }
 
-        public PagingInfo  PageModel { get; set; }
+        public PageInfo  PageModel { get; set; }
 
         public string PageAction { get; set; }
 
@@ -52,7 +52,7 @@ namespace Store.Infrastructure
                 if(PageClassesEnabled)
                 {
                    tag.AddCssClass(PageClass);
-                    tag.AddCssClass(i == PageModel.CurrentPage
+                    tag.AddCssClass(i == PageModel.PageNumber
                         ? PageClassSelected : PageClassNormal);
                 }
 

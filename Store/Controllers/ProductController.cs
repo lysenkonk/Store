@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Store.Models;
 using Store.Models.ViewModels;
 
@@ -11,7 +12,7 @@ namespace Store.Controllers
     public class ProductController : Controller
     {
         private IProductRepository repository;
-        public int PageSize = 20;
+        public int pageSize = 20;
 
         public ProductController(IProductRepository repo)
         {
@@ -31,33 +32,31 @@ namespace Store.Controllers
         }
 
                 
-        public  ViewResult List(string category, int page = 1, SortState sortOrder = SortState.NameAsc)
+        public  async Task<IActionResult> List(string category, int page = 1, SortState sortOrder = SortState.NameAsc)
         {
-            IEnumerable<Product> products = repository.Products
-                .Where(p => category == null || p.Category == category);
 
-            var viewModel = new ProductsListViewModel
+              IQueryable<Product> products = repository.Products
+                .Where(p => category == null || p.Category == category );
+            products = sortProducts(sortOrder, products);
+
+
+
+            var count = await products.CountAsync();
+            var items = await products.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            ProductsViewModel viewModel = new ProductsViewModel
             {
-                Products = (sortProducts(sortOrder, products))
-                    .Skip((page - 1) * PageSize)
-                            .Take(PageSize),
-                PagingInfo = new PagingInfo
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = category == null ?
-                                    repository.Products.Count() :
-                                    products.Where(e =>
-                                        e.Category == category).Count()
-                },
-                CurrentCategory = category
+                PageInfo = new PageInfo(count, page, pageSize),
+                SortViewModel = new SortViewModel(sortOrder),
+                FilterViewModel = new FilterViewModel(repository.Categories.ToList(), category),
+                Products = items
             };
             return View("~/Views/Product/List.cshtml", viewModel);
         }
 
-        private IEnumerable<Product> sortProducts(SortState sortOrder, IEnumerable<Product> products)
+        private IQueryable<Product> sortProducts(SortState sortOrder, IQueryable<Product> products)
         {
-            IEnumerable<Product> sortedProducts = products;
+            IQueryable<Product> sortedProducts = products;
             switch (sortOrder)
             {
                 case SortState.NameDesc:

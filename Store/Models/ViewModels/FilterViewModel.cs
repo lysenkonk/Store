@@ -8,7 +8,7 @@ namespace Store.Models.ViewModels
 {
     public class FilterViewModel
     {
-       public FilterViewModel(List<string> categories, string category)
+        public FilterViewModel(List<string> categories, string category)
         {
             categories.Insert(0, "all");
             Categories = new SelectList(categories, "Name", category);

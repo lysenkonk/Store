@@ -10,6 +10,8 @@ namespace Store.Models
     {
         IQueryable<Product> Products { get; }
 
+        IEnumerable<string> Categories { get; }
+
         Task<Product> SaveProductAsync(Product product);
 
         Task<Product> DeleteProductAsync(int productID);
