@@ -35,7 +35,7 @@ namespace Store.Controllers
         public  async Task<IActionResult> List(string category, int page = 1, SortState sortOrder = SortState.NameAsc)
         {
 
-              IQueryable<Product> products = repository.Products
+               IQueryable<Product> products = repository.Products
                 .Where(p => category == null || p.Category == category );
             products = sortProducts(sortOrder, products);
 

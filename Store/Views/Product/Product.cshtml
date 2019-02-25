@@ -27,7 +27,7 @@
                         @foreach (var image in Model.Images)
                         {
                             <li>
-                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" alt="@Model.Name" title="@Model.Name" />
+                                <img class="sm_img" src="@Url.Content("/Files/Sm/" + image.Name)" name ="@image.Name" alt="@Model.Name" title="@Model.Name" />
                             </li>
                         }
                     </ul>
@@ -100,14 +100,14 @@
 
           <!-- Modal Caption (Image Text) -->
           <div id="caption"></div>
-        </div>
+</div>
 
 <script>
     // Get the modal
     var modal = document.getElementById('myModal');
 
     // Get the image and insert it inside the modal - use its "alt" text as a caption
-    var img = document.getElementById('#img_Bg');
+    var img = document.getElementById('img_Bg');
     var modalImg = document.getElementById("img01");
     var captionText = document.getElementById("caption");
     img.onclick = function () {

@@ -6,7 +6,15 @@
 <div class="set-proposals">
     <div class="head">
         <div class="holder article">
-            <h1>@Model.FilterViewModel.SelectedCategory</h1>
+
+            @if (Model.FilterViewModel.SelectedCategory != null)
+            {
+                <h1> @(Model.FilterViewModel.SelectedCategory)</h1>
+            }
+            else
+            {
+                <h1> All products</h1>
+            }
         </div>
         <div class="sorting">
             <strong>Sort:</strong>
