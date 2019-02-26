@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Store.Services;
 using Store.Models.ViewModels;
+using System.Collections.Generic;
 
 namespace Store.Controllers
 {
@@ -13,6 +14,8 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private readonly ProductsService _productsService;
+        public int pageSize = 20;
+
 
         public AdminController(ProductsService service)
         {
@@ -22,6 +25,25 @@ namespace Store.Controllers
         public ViewResult Index()
         {
             return View("Products", _productsService.Products);
+        }
+
+        public ViewResult List(string category, int page = 1)
+        {
+
+            IEnumerable<Product> products = _productsService.Products
+             .Where(p => category == null || p.Category == category);
+
+            var count = products.Count();
+            var items = products.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ProductsViewModel viewModel = new ProductsViewModel
+            {
+                PageInfo = new PageInfo(count, page, pageSize),
+                SortViewModel = new SortViewModel(SortState.NameAsc),
+                FilterViewModel = new FilterViewModel(_productsService.Categories.ToList(), category),
+                Products = items
+            };
+            return View("~/Views/Admin/Products.cshtml", viewModel.Products);
         }
 
         public IActionResult Edit(int productId)

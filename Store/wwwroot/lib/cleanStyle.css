@@ -508,7 +508,7 @@ p {
     overflow: hidden;
     height: 1%;
     padding: 0 0 0 24px;
-    margin: -9px 0 0
+    margin: 10px;
 }
 
     #main .btn-up {
@@ -536,7 +536,7 @@ p {
 }
 
     .sidenav .title {
-        background: url(../Files/design/design-01.png) no-repeat scroll -79px -1px transparent;
+        background: powderblue;
         height: 44px;
         font: 20px "trebuchet ms",helvetica,sans-serif;
         color: #fff;
@@ -568,7 +568,8 @@ p {
                 width: 219px;
                 height: 32px;
                 text-decoration: none;
-                background: url(../Files/design/design-02.png) no-repeat -211px -33px;
+                background: rgba(86, 61, 124, .15);
+                ;
                 overflow: hidden;
                 font-size: 14px
             }

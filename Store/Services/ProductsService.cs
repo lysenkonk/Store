@@ -28,6 +28,7 @@ namespace Store.Services
         }
 
         public IEnumerable<Product> Products => _repository.Products;
+        public IEnumerable<string> Categories => _repository.Categories;
 
         public async Task<Product> SaveProductAsync(Product product)
         {
@@ -82,7 +83,7 @@ namespace Store.Services
         private static Bitmap ResizeImage(Stream stream, int width, int height)
         {
             var resized = new Bitmap(width, height);
-            using (var image = new Bitmap(stream))
+            using (var image = new Bitmap(stream)) 
             using (var graphics = Graphics.FromImage(resized))
             {
                 graphics.CompositingQuality = CompositingQuality.HighSpeed;
