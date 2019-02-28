@@ -474,6 +474,23 @@ p {
     display: inline-block;
 }
 
+
+#mainAdm {
+    overflow: hidden;
+    height: 1%;
+    padding: 0 0 0 24px;
+    margin: 10px;
+}
+
+.sidenav ul li .tab {
+    display: block;
+    width: 219px;
+    height: 32px;
+    text-decoration: none;
+    background: url(../Files/design/design-02.png) no-repeat -211px -33px;
+    overflow: hidden;
+    font-size: 14px
+}
     #nav li {
         float: left;
         background: url(../Files/design/separatop01.gif) no-repeat 0 2px;
@@ -529,13 +546,13 @@ p {
     margin-right: -3px
 }
 
-.sidenav {
+.sidenavAdm {
     width: 100%;
     overflow: hidden;
     margin: 0 0 18px
 }
 
-    .sidenav .title {
+    .sidenavAdm .title {
         background: powderblue;
         height: 44px;
         font: 20px "trebuchet ms",helvetica,sans-serif;
@@ -545,25 +562,25 @@ p {
         position: relative
     }
 
-    .sidenav ul {
+    .sidenavAdm ul {
         margin: 0;
         padding: 0;
         list-style: none
     }
 
-        .sidenav ul li {
+        .sidenavAdm ul li {
             margin: 0 0 1px;
             float: left;
             width: 100%
         }
 
-            .sidenav ul li .tab:hover {
+            .sidenavAdm ul li .tab:hover {
                 background: url(../Files/design/design-02.png) no-repeat -211px -66px;
                 color: #303030;
                 text-decoration: none
             }
 
-            .sidenav ul li .tab {
+            .sidenavAdm ul li .tab {
                 display: block;
                 width: 219px;
                 height: 32px;
@@ -574,19 +591,19 @@ p {
                 font-size: 14px
             }
 
-                .sidenav ul li .tab span {
+                .sidenavAdm ul li .tab span {
                     float: left;
                     margin: 7px 0 0 26px;
                     display: inline;
                     background: url(../Files/design/dot01.gif) repeat-x 0 100%
                 }
 
-            .sidenav ul li .list {
+            .sidenavAdm ul li .list {
                 padding: 0 25px 1px;
                 background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
             }
 
-                .sidenav ul li .list li {
+                .sidenavAdm ul li .list li {
                     margin: 0;
                     float: none;
                     width: auto;
@@ -594,15 +611,78 @@ p {
                     border-bottom: solid 1px #e6e6e5
                 }
 
-                .sidenav ul li .list a {
+                .sidenavAdm ul li .list a {
                     font-weight: 700;
                     text-decoration: none
                 }
 
-                    .sidenav ul li .list a:hover {
+                    .sidenavAdm ul li .list a:hover {
                         text-decoration: underline
                     }
+/*-----------------------------------------------------------------------------------------------------*/
+.sidenav {
+    width: 100%;
+    overflow: hidden;
+    margin: 0 0 18px
+}
+.sidenav .title {
+    background: url(../Files/design/design-01.png) no-repeat scroll -79px -1px transparent;
+    height: 44px;
+    font: 20px "trebuchet ms",helvetica,sans-serif;
+    color: #fff;
+    padding: 5px 0 0 15px;
+    margin: 0 0 -8px;
+    position: relative
+}
 
+.sidenav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+    .sidenav ul li {
+        margin: 0 0 1px;
+        float: left;
+        width: 100%
+    }
+
+        .sidenav ul li .tab:hover {
+            background: url(../Files/design/design-02.png) no-repeat -211px -66px;
+            color: #303030;
+            text-decoration: none
+        }
+
+
+.sidenav ul li .tab span {
+    float: left;
+    margin: 7px 0 0 26px;
+    display: inline;
+    background: url(../Files/design/dot01.gif) repeat-x 0 100%
+}
+
+.sidenav ul li .list {
+    padding: 0 25px 1px;
+    background: url(../Files/design/bg-sidebar-drop-b.gif) no-repeat 0 100%
+}
+
+    .sidenav ul li .list li {
+        margin: 0;
+        float: none;
+        width: auto;
+        padding: 4px 0 5px 11px;
+        border-bottom: solid 1px #e6e6e5
+    }
+
+    .sidenav ul li .list a {
+        font-weight: 700;
+        text-decoration: none
+    }
+
+        .sidenav ul li .list a:hover {
+            text-decoration: underline
+        }
+        /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 .feedback {
     background: url(../Files/design/bg-feedback-c.gif) repeat-y;
     width: 100%;

@@ -32,10 +32,10 @@
         <div class="alert alert-warning">@TempData["message"]</div>
     }
 
-        <div id="main">
+        <div id="mainAdm">
             <div class="btn-up" onclick="$('html, body').animate({ scrollTop: 0 }, 'slow');"></div>
             <div class="sidebar">
-                <div class="sidenav">
+                <div class="sidenavAdm">
                     <div class="title">Catalog</div>
                     <ul>
                         @await Component.InvokeAsync("CategoryNavigation")
