@@ -47,6 +47,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\Files\Bg\" />
     <Folder Include="wwwroot\Files\Sm\" />
+    <Folder Include="wwwroot\Gallery\Bg\" />
+    <Folder Include="wwwroot\Gallery\Sm\" />
   </ItemGroup>
 
 </Project>

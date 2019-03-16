@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.DependencyInjection;
+using Store.Models.ViewModels;
 
 namespace Store.Models
 {
@@ -14,5 +15,6 @@ namespace Store.Models
             : base(options) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<PhotoModel> PhotoModels { get; set; }
     }
 }

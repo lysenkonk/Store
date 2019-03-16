@@ -1,0 +1,106 @@
+﻿@model PhotosViewModel
+@addTagHelper "*,Store"
+@{
+    ViewBag.Title = "Gallery";
+    Layout = "_AdminLayout";
+}
+<div class="container">
+    @if (Model.Photos.Count() > 0)
+    {
+    <div class="row">
+        @for (int i = 0; i < (int)Model.Photos.Count; i++)
+        {
+            <div class="column">
+                <img src="@Url.Content("/Gallery/Sm/" +  Model.Photos[i].Name)" onclick="openModal();currentSlide(i)"
+                     alt="@Model.Photos[i].Name" style="width:100%" class="hover-shadow cursor">
+            </div>
+        }
+    </div>
+        <div id="myModal" class="modal">
+            <span class="close cursor" onclick="closeModal()">&times;</span>
+            <div class="modal-content">
+                @foreach (var photo in Model.Photos)
+                {
+                    int number = 0;
+                    <div class="mySlides">
+                        <div class="numbertext">@{++number;} / @Model.Photos.Count; </div>
+                        <img src="@Url.Content("/Gallery/Bg/" + photo.Name)" style="width:100%">
+                    </div>
+                }
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <div class="caption-container">
+                    <p id="caption"></p>
+                </div>
+
+                @for (int i = 0; i < (int)Model.Photos.Count; i++)
+                {
+                    <div class="column">
+                        <img src="@Url.Content("/Gallery/Bg/" + Model.Photos[i].Name)" onclick="currentSlide(i)"
+                             alt="@Model.Photos[i].Name" style="width:100%" class="demo cursor">
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+    <div class="col-md-3 align-self-center">
+
+        <form id="form" asp-action="AddImageToGallery" method="post" enctype="multipart/form-data">
+            <div class="upload-button">
+                <a onclick="document.getElementById('file-input').click();" class="btn btn-sm btn-info">Add</a>
+                <input id="file-input" type="file" name="uploadedFile" onchange="submitForm('form');" />
+            </div>
+        </form>
+
+    </div>
+    <div page-model="@Model.PageInfo" page-action="Gallery" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-secondary"
+         page-class-selected="btn-primary"
+         class="pagination justify-content-center">
+    </div>
+</div>
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+    function openModal() {
+        document.getElementById('myModal').style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById('myModal').style.display = "none";
+    }
+
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+</script>
+

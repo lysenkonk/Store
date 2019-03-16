@@ -14,14 +14,40 @@ namespace Store.Controllers
     public class AdminController : Controller
     {
         private readonly ProductsService _productsService;
+        private readonly PhotosService _photosService;
+
         public int pageSize = 20;
 
-
-        public AdminController(ProductsService service)
+        public AdminController(ProductsService service, PhotosService photosService)
         {
             _productsService = service;
+            _photosService = photosService;
         }
 
+        //-----------------------------------------------------------------------------------------------------------------Gallery actions------------------------------------------------------------------------------------------------
+        public async Task<IActionResult> AddImageToGallery(IFormFile uploadedFile)
+        {
+            await _photosService.SavePhoto(uploadedFile);
+
+            return RedirectToAction("List");
+        }
+
+        public IActionResult Gallery(int page = 1)
+        {
+            List<PhotoModel> photos = new List<PhotoModel>(_photosService.Photos.Skip((page - 1) * pageSize).Take(pageSize));
+
+            PhotosViewModel viewModel = new PhotosViewModel
+            {
+                Photos = new List<PhotoModel>(_photosService.Photos.Skip((page - 1) * pageSize).Take(pageSize)),
+                PageInfo = new PageInfo(_photosService.Photos.Count(), page, pageSize)
+            };
+            return View(viewModel);
+        }
+
+        //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        //-----------------------------------------------------------------------------------------------------------------Product actions-------------------------------------------------------------------------------------------------
         public ViewResult Index()
         {
             return View("Products", _productsService.Products);
@@ -29,7 +55,6 @@ namespace Store.Controllers
 
         public ViewResult List(string category, int page = 1)
         {
-
             IEnumerable<Product> products = _productsService.Products
              .Where(p => category == null || p.Category == category);
 
@@ -68,7 +93,7 @@ namespace Store.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Product product)
         {
-            
+
             if (ModelState.IsValid)
             {
                 await _productsService.SaveProductAsync(product);
@@ -88,7 +113,7 @@ namespace Store.Controllers
 
         public async Task<IActionResult> RemoveImage(int productId, string imageName)
         {
-            if(!isProduct(productId))
+            if (!isProduct(productId))
             {
                 return RedirectToAction("Create");
             }
@@ -100,7 +125,7 @@ namespace Store.Controllers
 
         public async Task<IActionResult> AddImage(int productId, IFormFile uploadedFile)
         {
-            if(!isProduct(productId))
+            if (!isProduct(productId))
             {
                 return RedirectToAction("Create");
             }
@@ -109,6 +134,18 @@ namespace Store.Controllers
 
             return RedirectToAction("Edit", new { productId });
         }
+
+        //public IActionResult ListPhotos(int page = 1)
+        //{
+        //    IEnumerable<PhotoModel> photos = _photosService.Photos.Skip((page - 1) * pageSize).Take(pageSize);
+
+        //    PhotosViewModel viewModel = new PhotosViewModel
+        //    {
+        //        Photos = _photosService.Photos.Skip((page - 1) * pageSize).Take(pageSize),
+        //        PageInfo = new PageInfo(_photosService.Photos.Count(), page, pageSize)
+        //    };
+        //    return View(viewModel);
+        //}
 
         public IActionResult Create()
         {
@@ -123,7 +160,6 @@ namespace Store.Controllers
             return View("Edit", viewModel);
         }
 
-        
         public async Task<IActionResult> Delete(int productId)
         {
             Product deletedProduct =  await _productsService.DeleteProductAsync(productId);
@@ -144,5 +180,7 @@ namespace Store.Controllers
             }
             return true;
         }
+
+
     }
 }

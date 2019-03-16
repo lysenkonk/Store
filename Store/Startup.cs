@@ -34,6 +34,7 @@ namespace Store
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IProductRepository, EFProductRepository>();
+            services.AddTransient<IPhotoModelRepository, EFPhotoModelRepository>();
             services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IOrderRepository, EFOrderRepository>();
@@ -41,6 +42,7 @@ namespace Store
             services.AddMemoryCache();
             services.AddSession();
             services.AddTransient<ProductsService>();
+            services.AddTransient<PhotosService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

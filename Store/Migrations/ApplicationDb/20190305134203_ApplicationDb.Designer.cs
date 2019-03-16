@@ -11,9 +11,10 @@ using System;
 namespace Store.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190305134203_ApplicationDb")]
+    partial class ApplicationDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +56,7 @@ namespace Store.Migrations.ApplicationDb
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("FileModel");
+                    b.ToTable("FileModels");
                 });
 
             modelBuilder.Entity("Store.Models.Order", b =>
@@ -112,20 +113,6 @@ namespace Store.Migrations.ApplicationDb
                     b.HasKey("ProductID");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Store.Models.ViewModels.PhotoModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Path");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PhotoModels");
                 });
 
             modelBuilder.Entity("Store.Models.CartLine", b =>

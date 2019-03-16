@@ -72,7 +72,7 @@ namespace Store.Models
             Product dbEntry = _context.Products.Include(p => p.Images).FirstOrDefault(p => p.ProductID == productId);
 
             if (dbEntry == null)
-                throw new Exception("404 Not Found produc");
+                throw new Exception("404 Not Found product");
 
             FileModel image = dbEntry.Images.FirstOrDefault(img => img.Name == fileName);
 
