@@ -11,7 +11,7 @@
         @for (int i = 0; i < (int)Model.Photos.Count; i++)
         {
             <div class="column">
-                <img src="@Url.Content("/Gallery/Sm/" +  Model.Photos[i].Name)" onclick="openModal();currentSlide(i)"
+                <img src="@Url.Content("/Gallery/Sm/" +  Model.Photos[i].Name)"
                      alt="@Model.Photos[i].Name" style="width:100%" class="hover-shadow cursor">
             </div>
         }
@@ -21,28 +21,16 @@
             <div class="modal-content">
                 @foreach (var photo in Model.Photos)
                 {
-                    int number = 0;
+                    int number = 1;
                     <div class="mySlides">
-                        <div class="numbertext">@{++number;} / @Model.Photos.Count; </div>
+                        <div class="numbertext">@number.ToString()/ @Model.Photos.Count </div>
                         <img src="@Url.Content("/Gallery/Bg/" + photo.Name)" style="width:100%">
                     </div>
-                }
+                                number++;
+                            }
 
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                <div class="caption-container">
-                    <p id="caption"></p>
-                </div>
-
-                @for (int i = 0; i < (int)Model.Photos.Count; i++)
-                {
-                    <div class="column">
-                        <img src="@Url.Content("/Gallery/Bg/" + Model.Photos[i].Name)" onclick="currentSlide(i)"
-                             alt="@Model.Photos[i].Name" style="width:100%" class="demo cursor">
-                    </div>
-                }
-
             </div>
         </div>
     }
@@ -66,8 +54,17 @@
     function submitForm(formId) {
         document.getElementById(formId).submit();
     }
-    function openModal() {
+    /*------------------------------------------------------------------gallery-----------------*/
+    let smImages = document.getElementsByClassName("hover-shadow");
+
+    for (let i = 0; i < smImages.length; i++) {
+        smImages[i].addEventListener("click", function (e) { openModal(e) }, false);
+    }
+
+    function openModal(e) {
+        e.target.style.display = "block";
         document.getElementById('myModal').style.display = "block";
+
     }
 
     function closeModal() {
@@ -81,26 +78,28 @@
         showSlides(slideIndex += n);
     }
 
-    function currentSlide(n) {
+    function currentSlide(n) {  
         showSlides(slideIndex = n);
     }
 
     function showSlides(n) {
         var i;
         var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
+        //var dots = document.getElementsByClassName("demo");
         var captionText = document.getElementById("caption");
         if (n > slides.length) { slideIndex = 1 }
         if (n < 1) { slideIndex = slides.length }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        captionText.innerHTML = dots[slideIndex - 1].alt;
+        //for (i = 0; i < dots.length; i++) {
+        //    dots[i].className = dots[i].className.replace(" active", "");
+        //}
+        slides[slideIndex - 1].style.display = "block";   
+        //dots[slideIndex - 1].className += " active";
+        //captionText.innerHTML = dots[slideIndex - 1].alt;
     }
+   /* ------------------------------------------------------------------------------------------------*/
+
 </script>
 
